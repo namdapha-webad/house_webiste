@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <header>
+    
+    <nav class="navbar">
+        <a href="/">Namdapha House</a>
+        <a href="/HC">House Council</a>
+        <a href="/pr">Pr & web ops team</a>
+        <a href="/Rc">Regional-Coordinators</a>
+        <a href="/Club">Clubs</a>
+        <a href="/Resource">Namdapha Resources</a>
+        <a href="announcement">Announcements</a>
+    </nav>
+</header>
+  <header class="team-header">
+        <h1>Namdapha RC</h1>
+  </header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Team Profiles rotation </title>
+    <style>
+      .back-button {
+          position: fixed; 
+          top: 10px; 
+          left: 10px; 
+          background-color: #007BFF; 
+          color: white; 
+          padding: 10px 15px; 
+          border: none; 
+          border-radius: 5px; 
+          text-decoration: none; 
+          font-size: 16px; 
+          cursor: pointer; 
+      }
+      .back-button:hover {
+          background-color: #0056b3; 
+      }/*
+      .popup {
+          display: none;
+          position: fixed; 
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          z-index: 1000;
+          display: flex; 
+          justify-content: center;
+          align-items: center;
+      }
+      .popup-content {
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+          color: #000; 
+          width: 300px; 
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      .close-popup {
+          cursor: pointer;
+          color: #ff0000; 
+          font-size: 20px;
+          font-weight: bold;
+          position: absolute; 
+          top: 10px;
+          right: 15px;
+      }
+      .close-popup:hover {
+          color: #d00000; 
+      }*/
+
+  </style>
+</head>
+<body>
+  
+<div style="--total: 10;" class="circle-wrapper">
+  <div class="center-element">The Team</div>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-1">
+  <label id="avatar-1" for="radio-avatar-1" class="avatar" style="--i:1">
+    <img src="{{ url_for('static', filename='images/thakur.jpg') }}" alt="Thakur Gaytri">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Thakur Gaytri - Mumbai Region</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-2">
+  <label id="avatar-2" for="radio-avatar-2" class="avatar" style="--i:2">
+    <img src="{{ url_for('static', filename='images/sravya1.png') }}" alt="SRAVYA N">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">SRAVYA N - Banglore </textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-3">
+  <label id="avatar-3" for="radio-avatar-3" class="avatar" style="--i:3">
+    <img src="{{ url_for('static', filename='images/DORA.png') }}" alt="Dora Hasini R ">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Dora Hasini R - Chennai</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-4">
+  <label id="avatar-4" for="radio-avatar-4" class="avatar" style="--i:4">
+    <img src="{{ url_for('static', filename='images/Jayasri.jpg') }}" alt="S. Jayasri">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">S. Jayasri - Chennai</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-5">
+  <label id="avatar-5" for="radio-avatar-5" class="avatar" style="--i:5">
+    <img src="{{ url_for('static', filename='images/Devansh.jpg') }}" alt="Devansh Malhotra">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Devansh Malhotra - Chandigarh </textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-6">
+  <label id="avatar-6" for="radio-avatar-6" class="avatar" style="--i:6">
+    <img src="{{ url_for('static', filename='images/Harshita.jpg') }}" alt="Harshita Dudeja">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Harshita Dudeja - Delhi</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-7">
+  <label id="avatar-7" for="radio-avatar-7" class="avatar" style="--i:7">
+    <img src="{{ url_for('static', filename='images/Ravi.jpg') }}" alt="Ravi Kumar">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Ravi Kumar - Patna</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-8">
+  <label id="avatar-8" for="radio-avatar-8" class="avatar" style="--i:8">
+    <img src="{{ url_for('static', filename='images/Shivani.jpg') }}" alt="Shivani">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Shivani - Lucknow</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-9">
+  <label id="avatar-9" for="radio-avatar-9" class="avatar" style="--i:9">
+    <img src="{{ url_for('static', filename='images/PrathamAgarwal.jpg') }}" alt="My Image">
+
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">Pratham Agarwal - Kolkata</textPath>
+      </text>
+    </svg>
+  </label>
+
+  <input type="radio" name="radio-avatar" id="radio-avatar-10">
+  <label id="avatar-10" for="radio-avatar-10" class="avatar" style="--i:10">
+    <img src="{{ url_for('static', filename='images/Reddy.png') }}" alt="AENUGU ARNAV REDDY">
+    <svg viewBox="0 0 300 300">
+      <text fill="currentColor">
+        <textPath xlink:href="#circlePath">AENUGU ARNAV REDDY - Hyderabad</textPath>
+      </text>
+    </svg>
+  </label>
+</div>
+<script>
+  // JavaScript for Popup
+  const popup = document.getElementById('popup');
+  const openPopup = document.getElementById('openPopup');
+  const closePopup = document.getElementById('closePopup');
+
+  // Show Popup
+  openPopup.addEventListener('click', () => {
+      popup.style.display = 'flex';
+  });
+
+  // Hide Popup
+  closePopup.addEventListener('click', () => {
+      popup.style.display = 'none';
+  });
+
+  // Close Popup when clicking outside content
+  window.addEventListener('click', (event) => {
+      if (event.target === popup) {
+          popup.style.display = 'none';
+      }
+  });
+</script>
+
+<!-- SVG template for dynamic text -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300" width="0" height="0">
+  <defs>
+    <path id="circlePath" d="M 150, 150 m -120, 0 a 120,120 0 0,1 240,0 a 120,120 0 0,1 -240,0" />
+  </defs>
+</svg>
+
+
+<script>
+  // Uncheck radio buttons (unfortunately this cannot be done with CSS alone)
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Setting a timeout enables this hack to work
+      setTimeout(() => radio.checked = !radio.checked, 0);
+  });
+});
+
+// Map of avatar IDs to specific background image URLs
+const avatarBackgrounds = {
+  "avatar-1": "https://i.ytimg.com/vi/n9GGtkGvwj4/maxresdefault.jpg",
+  "avatar-2": "https://external-preview.redd.it/aerial-view-of-bengaluru-city-v0-7jzTIh9e8U5CmUGSIv2AR8xwJmoUaVyglBW_efgZR9w.png?format=pjpg&auto=webp&s=707895414fb03400a174cccdb9658d313c2324c5",
+  "avatar-3": "https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/1765681589chennai-1696645169332.jpg",
+  "avatar-4": "https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/1765681589chennai-1696645169332.jpg",
+  "avatar-5": "https://static2.tripoto.com/media/transfer/img/1891611/TripDocument/1620754416_chandigarh.gif",
+  "avatar-6": "https://png.pngtree.com/thumb_back/fw800/background/20231003/pngtree-a-3d-render-illustration-of-the-all-india-war-memorial-commonly-image_13566303.png",
+  "avatar-7": "https://content.r9cdn.net/rimg/dimg/f9/e4/73b8e1bc-lm-50366-16079f9e8be.jpg?crop=true&width=1020&height=498",
+  "avatar-8": "https://thelucknowtribune.org/wp-content/uploads/2024/07/l32220211210173103.webp",
+  "avatar-9": "https://cazloyd.com/wp-content/uploads/2023/09/How-Best-To-Spend-48-Hours-In-Kolkata-India.jpeg.webp",
+  "avatar-10": "https://i.ytimg.com/vi/zBvT299ihHY/maxresdefault.jpg"
+};
+
+// Function to change background image with transparency
+function changeBackgroundImage(event) {
+  const avatarId = event.currentTarget.id; // Get the ID of the clicked avatar
+  const backgroundUrl = avatarBackgrounds[avatarId]; // Get the corresponding background URL
+  if (backgroundUrl) {
+      document.body.style.transition = "background-image 1s ease";
+      document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundUrl})`;
+  }
+}
+
+// Add event listener to each avatar
+document.querySelectorAll(".avatar").forEach(avatar => {
+  avatar.addEventListener("click", changeBackgroundImage);
+});
+
+</script>
+</body>
+</html>

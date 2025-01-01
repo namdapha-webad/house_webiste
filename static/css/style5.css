@@ -1,0 +1,107 @@
+body {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(34, 34, 34, 0.9)); /* Darker gradient */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    overflow: hidden; /* Keep this if you want to hide overflow */
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly more opaque background */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Deeper shadow for depth */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.container:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+h1 {
+    font-size: 4rem; /* Increased font size for prominence */
+    color: #ff7e5f;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Enhanced text shadow for depth */
+    letter-spacing: 1px; /* Added letter spacing for elegance */
+}
+
+h2 {
+    font-size: 2.5rem; /* Increased font size for better visibility */
+    color: #feb47b;
+    margin-top: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+    letter-spacing: 0.5px; /* Added letter spacing */
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.3rem; /* Slightly larger font size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+    font-weight: bold; /* Bold text for emphasis */
+}
+
+a:hover {
+    color: #ff7e5f;
+    transform: scale(1.1); /* Scale up on hover */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Text shadow on hover */
+}
+
+p {
+    font-size: 1.2rem; /* Slightly larger font size */
+    color: #e0e0e0;
+    line-height: 1.6; /* Improved line height for readability */
+    margin: 0.5rem 0; /* Added margin for spacing */
+    max-width: 600px; /* Limit width for better readability */
+}
+
+/* Add a button style */
+.button {
+    background-color: #ff7e5f; /* Button background color */
+    color: #ffffff; /* Button text color */
+    padding: 0.75rem 1.5rem; /* Button padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1.2rem; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition effects */
+    font-weight: bold; /* Bold text for emphasis */
+}
+
+.button:hover {
+    background-color: #feb47b; /* Change background on hover */
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+/* Styles for resource items */
+.resource-item {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.resource-item h3 {
+    margin-right: 1rem;
+    font-size: 1.5rem; /* Increased font size for resource items */
+    color: #ff7e5f; /* Color for resource item titles */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}/* Text shadow for depth

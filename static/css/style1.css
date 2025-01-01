@@ -1,0 +1,203 @@
+/* General Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  background-image: url('../namdapha.png'); /* Replace with the correct file path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Floating Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 2rem; /* Distance from the top of the page */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust to center the navbar */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for readability */
+  backdrop-filter: blur(10px); /* Add a glass-like effect */
+  padding: 0.8rem 2rem; /* Add padding for better spacing */
+  border-radius: 30px; /* Rounded corners for a floating look */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000; /* Ensure it stays above all content */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for a floating effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+  transform: translateX(-50%) translateY(-5px); /* Add a slight lift on hover */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ff7e5f;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Align content to the bottom of the hero section */
+  height: 100vh; /* Full viewport height for the hero section */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+  z-index: 1;
+}
+
+.welcome-text {
+  font-size: 3rem;
+  color: #ffffff;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 8s infinite;
+  z-index: 2; /* Ensure text appears above the overlay */
+  margin-bottom: 2rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ffffff;
+  z-index: 2; /* Ensure text appears above the overlay */
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto 2rem auto;
+}
+
+/* About Section */
+.about {
+  padding: 4rem 2rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  margin-top: -2rem; /* Slight overlap with the hero section for smooth flow */
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #ff7e5f;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.footer a {
+  color: #ff7e5f;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Keyframes for Gradient Text Animation */
+@keyframes gradientText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Horizontal Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 2rem; /* Distance from the top of the page */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust to center the navbar */
+  background: linear-gradient(90deg, rgba(34, 34, 34, 1), rgba(0, 0, 0, 1)); /* Dark gradient background */
+  backdrop-filter: blur(15px); /* Stronger glass-like effect */
+  padding: 1rem 4rem; /* Increased padding for a wider navbar */
+  border-radius: 30px; /* Rounded corners for a floating look */
+  display: flex;
+  justify-content: space-around; /* Space items evenly */
+  align-items: center;
+  z-index: 1000; /* Ensure it stays above all content */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deeper shadow for a floating effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Added background transition */
+}
+
+.navbar:hover {
+  transform: translateX(-50%) translateY(-5px); /* Add a slight lift on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+  background: linear-gradient(90deg, rgba(34, 34, 34, 1), rgba(0, 0, 0, 1)); /* Keep the same gradient on hover */
+}
+
+.navbar a {
+  color: #ffffff; /* Link color */
+  text-decoration: none; /* Remove underline */
+  font-size: 1.2rem; /* Increased font size */
+  font-weight: bold; /* Bold text */
+  margin: 0 1.5rem; /* Horizontal margin for spacing */
+  position: relative; /* For pseudo-element positioning */
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+}
+
+.navbar a::after {
+  content: '';
+  display: block;
+  width: 0; /* Start with no width */
+  height: 2px; /* Underline height */
+  background: #ff7e5f; /* Underline color */
+  transition: width 0.3s ease; /* Animation for underline */
+  position: absolute;
+  left: 50%; /* Center the underline */
+  bottom: -5px; /* Position below the text */
+  transform: translateX(-50%); /* Center the underline */
+}
+
+.navbar a:hover {
+  color: #ff7e5f; /* Change color on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.navbar a:hover::after {
+  width: 100%; /* Expand underline on hover */
+}

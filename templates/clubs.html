@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubs</title>
+    <style>
+        body {
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .navbar {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ff7e5f;
+        }
+
+        .container {
+            display: flex;
+            padding-left: 10px;
+        }
+
+        .image-box {
+            position: relative;
+        }
+
+        .image-box img {
+            filter: saturate(0%);
+            width: 10%;
+            border: 2px solid seashell;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: all ease 0.4s;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .image-box img:hover {
+            filter: saturate(100%);
+            width: 30%;
+            box-shadow: 0 0 20px #00fffc, 0 0 40px #00fffc, 0 0 60px #00fffc;
+        }
+
+        .popup {
+            position: absolute;
+            bottom: 45%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px); 
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(255, 106, 0, 0.5);
+            opacity: 0;
+            transition: all 0.3s ease, opacity 0.3s ease;
+            white-space: nowrap;
+            z-index: 10;
+            transform-origin: bottom;
+        }
+
+        .image-box:hover .popup {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1.05);
+            animation: pop-in 0.3s ease;
+        }
+
+        @keyframes pop-in {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            width: 80%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s;
+            z-index: 100;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal h2 {
+            margin-top: 0;
+        }
+
+        .modal .close-btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            float: right;
+        }
+
+        .club-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .club-details .profile {
+            flex: 1;
+            margin: 15px;
+            text-align: center;
+        }
+
+        .club-details .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .club-details .profile p {
+            margin: 5px 0;
+        }
+
+        .membership-form {
+            margin-top: 20px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            margin-right: 10px;
+            color: #0000ff;
+        }
+
+        .event-links {
+            margin-top: 20px;
+        }
+
+        .event-links a {
+            display: block;
+            color: #0000ff;
+            margin-bottom: 5px;
+        }
+    </style>
+    <header>
+    
+        <nav class="navbar">
+            <a href="/">Namdapha House</a>
+            <a href="/HC">House Council</a>
+            <a href="/pr">Pr & web ops team</a>
+            <a href="/Rc">Regional-Coordinators</a>
+            <a href="/Club">Clubs</a>
+            <a href="/Resource">Namdapha Resources</a>
+            <a href="announcement">Announcements</a>
+        </nav>
+    </header>
+</head>
+<body>
+    <div class="container">
+        <div class="image-gallery">
+            <div class="image-box" onclick="openModal('Sahyog Foundation')">
+                <img src="{{ url_for('static', filename='images/sahyog.jpg') }}" alt="Sahyog Foundation">
+                <div class="popup">Sahyog Foundation Club</div>
+            </div>
+            <div class="image-box" onclick="openModal('Fearless Orators')">
+                <img src="{{ url_for('static', filename='images/final.png') }}" alt="The Fearless Orators">
+                <div class="popup">The Fearless Orators Club</div>
+            </div>
+            <div class="image-box" onclick="openModal('Stemonef Community')">
+                <img src="{{ url_for('static', filename='images/stemoneff.png') }}" alt="Stemonef Community">
+                <div class="popup">Stemonef Community Club</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Club Details -->
+    <div class="modal" id="clubModal">
+        <button class="close-btn" onclick="closeModal()">Close</button>
+        <h2 id="clubTitle"></h2>
+        <p id="clubDescription"></p>
+
+        <div class="club-details">
+            <!-- Secretary Details -->
+            <div class="profile">
+                <img id="secretaryPhoto" src="https://via.placeholder.com/100" alt="Secretary">
+                <p id="secretaryName">Secretary Name</p>
+                <p id="secretaryEmail">secretary@example.com</p>
+            </div>
+
+            <!-- Deputy Secretary Details -->
+            <div class="profile">
+                <img id="deputySecPhoto" src="https://via.placeholder.com/100" alt="Deputy Secretary">
+                <p id="deputySecName">Deputy Secretary Name</p>
+                <p id="deputySecEmail">deputysec@example.com</p>
+            </div>
+
+            <!-- Founder Details -->
+            <div class="profile">
+                <img id="founderPhoto" src="https://via.placeholder.com/100" alt="Founder">
+                <p id="founderName">Founder Name</p>
+                <p id="founderEmail">founder@example.com</p>
+            </div>
+        </div>
+        <div class="event-links">
+            <a href="#" id="membershiplink" target="_blank">Membership Form</a>
+            
+        </div>
+        <div class="social-links">
+            <a href="#" id="instagramLink" target="_blank">Instagram</a>
+            <a href="#" id="linkedinLink" target="_blank">LinkedIn</a>
+        </div>
+
+        <div class="event-links">
+            <a href="#" id="event1Link" target="_blank">Event 1</a>
+            <a href="#" id="event2Link" target="_blank">Event 2</a>
+        </div>
+
+    </div>
+
+    <script>
+        function openModal(clubName) {
+            const modal = document.getElementById('clubModal');
+            const title = document.getElementById('clubTitle');
+            const description = document.getElementById('clubDescription');
+            const instagramLink = document.getElementById('instagramLink');
+            const linkedinLink = document.getElementById('linkedinLink');
+            const membershipLink = document.getElementById('membershiplink');
+            const founderphoto = document.getElementById('founderPhoto');
+            const foundername = document.getElementById('founderName');
+            const founderemail = document.getElementById('founderEmail');
+            
+            title.textContent = clubName;
+
+            switch (clubName) {
+                case 'Sahyog Foundation':
+                    description.textContent = 'Sahyog Foundation Description...';
+                    instagramLink.href = 'https://instagram.com/sahyog';
+                    linkedinLink.href = 'https://linkedin.com/in/sahyog';
+                    membershipLink.href = 'https://membershipform.com';
+                    founderphoto.src = 'static/images/DORA.jpg';
+                    break;
+                case 'Fearless Orators':
+                    description.textContent = 'The Fearless Orators Description...';
+                    instagramLink.href = 'https://instagram.com/fearlessorators';
+                    linkedinLink.href = 'https://linkedin.com/in/fearlessorators';
+                    membershipLink.href = 'https://membershipform.com';
+                    founderphoto.src = 'static/images/hari.png';
+                    break;
+                case 'Stemonef Community':
+                    description.textContent = 'Stemonef Community Description...';
+                    instagramLink.href = 'https://instagram.com/stemonef';
+                    linkedinLink.href = 'https://linkedin.com/in/stemonef';
+                    membershipLink.href = 'https://membershipform.com';
+                    founderphoto.src = 'static/images/Devansh.jpg';
+                    break;
+                default:
+                    description.textContent = '';
+                    instagramLink.href = '#';
+                    linkedinLink.href = '#';
+                    membershipLink.href = '#';
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('clubModal');
+            modal.classList.remove('active');
+        }
+    </script>
+</body>
+</html>

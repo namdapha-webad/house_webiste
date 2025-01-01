@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR and Social Members</title>
+    <!--link rel="stylesheet" href="style4.css"-->
+    <style>
+        .home-link {
+    position: fixed; 
+    top: -50px; 
+    left: -250px; 
+    background: linear-gradient(135deg, #2b00ff, #00c6ff); /* Gradient background */
+    color: rgb(255, 255, 255); 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 50px; 
+    text-decoration: none; 
+    font-size: 20px; 
+    cursor: pointer; 
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition for background and transform */
+}
+
+.home-link:hover {
+    background: linear-gradient(135deg, #ff0000, #ff7f00); /* Change gradient on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, rgba(120, 4, 252, 0.825), rgba(200, 0, 255, 0.8)); /* Dark gradient */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    overflow: hidden; /* Keep this if you want to hide overflow */
+    font-family: 'Poppins', sans-serif;
+    color: #3f0000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+.navbar {
+          position: fixed;
+          top: -1rem; /* Distance from the top of the page */
+          left: 50%; /* Center horizontally */
+          transform: translateX(-50%); /* Adjust to center the navbar */
+          background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for readability */
+          backdrop-filter: blur(10px); /* Add a glass-like effect */
+          padding: 0.8rem 2rem; /* Add padding for better spacing */
+          border-radius: 30px; /* Rounded corners for a floating look */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          z-index: 1000; /* Ensure it stays above all content */
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for a floating effect */
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .navbar:hover {
+          transform: translateX(-50%) translateY(-5px); /* Add a slight lift on hover */
+          box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+        }
+        
+        .navbar a {
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: bold;
+          margin: 0 1rem;
+          transition: color 0.3s ease;
+        }
+        
+        .navbar a:hover {
+          color: #ff7e5f;
+        }
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 600px;
+    background: #f30404;
+    box-shadow: 0 30px 50px #dbdbdb;
+}
+
+.container .slide .item{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px #505050;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.slide .item:nth-child(3){
+    left: 50%;
+}
+.slide .item:nth-child(4){
+    left: calc(50% + 220px);
+}
+.slide .item:nth-child(5){
+    left: calc(50% + 440px);
+}
+
+/* here n = 0, 1, 2, 3,... */
+.slide .item:nth-child(n + 6){
+    left: calc(50% + 660px);
+    opacity: 0;
+}
+
+
+
+.item .content{
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: #eee;
+    transform: translate(0, -50%);
+    font-family: system-ui;
+    display: none;
+}
+
+
+.slide .item:nth-child(2) .content{
+    display: block;
+}
+
+
+.content .name{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: animate 1s ease-in-out 1 forwards;
+}
+
+.content .des{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content button{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+
+@keyframes animate {
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+
+
+.button{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+.button button{
+    width: 40px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid #000;
+    transition: 0.3s;
+}
+
+.button button:hover{
+    background: #ababab;
+    color: #fff;
+}
+    </style>
+    <header>
+        <h1>Namdapha House</h1>
+        <nav class="navbar">
+            <a href="/">Namdapha House</a>
+            <a href="/HC">House Council</a>
+            <a href="/pr">Pr & web ops team</a>
+            <a href="/Rc">Regional-Coordinators</a>
+            <a href="/Club">Clubs</a>
+            <a href="/resource">Namdapha Resources</a>
+            <a href="announcement">Announcements</a>
+        </nav>
+    </header>
+</head>
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <div class="container">
+
+        <div class="slide">
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/hari1.png') }}');">
+                <div class="content">
+                    <div class="name">HARISH RAVIKUMAR </div>
+                    <div class="des" style="
+  background: linear-gradient(#8a2be2, #4b0082); /* Violet gradient */
+  color: transparent; 
+  font-size: 15px; 
+  font-weight: bold; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border: 2px solid #4b0082; 
+  border-radius: 8px; 
+  display: inline-block;
+  background-clip: text; /* This may not work in all browsers */
+">
+  WEB OPS TEAM MEMBER
+</div>
+                    <button onclick="window.location.href='{{ url_for('hari') }}'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/shivam1.png') }}');">
+                <div class="content">
+                    <div class="name">SHIVAM KUMAR</div>
+                    <div class="des" style="
+  background: linear-gradient(#00d8fe, #1100ff); /* Violet gradient */
+  color: transparent; 
+  font-size: 15px; 
+  font-weight: bold; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border: 2px solid #0400ff; 
+  border-radius: 8px; 
+  display: inline-block;
+  background-clip: text; /* This may not work in all browsers */
+">
+  PR AND SOCIAL HEAD </br>
+</div>
+                    <button onclick="window.location.href='{{ url_for('shivam') }}'">See More</button>
+
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/monika1.png') }}');">
+                <div class="content">
+                    <div class="name">MONIKA R</div>
+                    <div class="des" style="
+  background: transparent; /* Set background to transparent */
+  color: rgb(121, 121, 2); /* Set text color to yellow */
+  font-size: 15px; 
+  font-weight: bold; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border: 2px solid #434b02; 
+  border-radius: 8px; 
+  display: inline-block;
+">
+  PR AND SOCIAL HEAD </br>
+</div>
+                    <button onclick="window.location.href='{{ url_for('monika') }}'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/navi1.png') }}');">
+                <div class="content">
+                    <div class="name">NAVJOT SINGH DADIALA</div>
+                    <div class="des" style="
+  background: transparent; /* Set background to transparent */
+  color: rgb(255, 0, 0); /* Set text color to gold */
+  font-size: 15px; 
+  font-weight: bold; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border: 2px solid #4b0202; 
+  border-radius: 8px; 
+  display: inline-block;
+">
+  PR AND SOCIAL MEMBER </br>
+</div>
+                    <button onclick="window.location.href='{{ url_for('navi') }}'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/sadhana1.png') }}');">
+                <div class="content">
+                    <div class="name">SADHANA KUMARI</div>
+                    <div class="des" style="
+  background: transparent; /* Set background to transparent */
+  color: rgb(3, 204, 110); /* Set text color to gold */
+  font-size: 15px; 
+  font-weight: bold; 
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border: 2px solid #025401; 
+  border-radius: 8px; 
+  display: inline-block;
+">
+  PR AND SOCIAL MEMBER </br>
+</div>
+                    <button onclick="window.location.href='{{ url_for('sadhana') }}'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/sravya1.png') }}');">
+                <div class="content">
+                    <div class="name">SRAVYA N</div>
+                    <div class="des" style="
+                    background: transparent; /* Set background to transparent */
+                    color: rgb(255, 203, 240); /* Set text color to gold */
+                    font-size: 15px; 
+                    font-weight: bold; 
+                    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                    padding: 10px; 
+                    border: 2px solid #9f0385; 
+                    border-radius: 8px; 
+                    display: inline-block;
+                  ">
+                    PR AND SOCIAL MEMBER </br>
+                  </div>
+                    <button onclick="window.location.href='{{ url_for('sravya') }}'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/vasundhara1.png') }}');">
+                <div class="content">
+                    <div class="name">VASUNDHARA SHRAMA</div>
+                    <div class="des" style="
+                    background: transparent; /* Set background to transparent */
+                    color: rgb(238, 254, 92); /* Set text color to gold */
+                    font-size: 15px; 
+                    font-weight: bold; 
+                    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                    padding: 10px; 
+                    border: 2px solid #9c8503; 
+                    border-radius: 8px; 
+                    display: inline-block;
+                  ">
+                    PR AND SOCIAL MEMBER </br>
+                  </div>
+                    <button onclick="window.location.href='{{ url_for('vasundhara') }}'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/prabhav.jpeg') }}');">
+                <div class="content">
+                    <div class="name">PRABHAV </div>
+                    <div class="des" style="
+                    background: transparent; /* Set background to transparent */
+                    color: rgb(238, 254, 92); /* Set text color to gold */
+                    font-size: 15px; 
+                    font-weight: bold; 
+                    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                    padding: 10px; 
+                    border: 2px solid #9c8503; 
+                    border-radius: 8px; 
+                    display: inline-block;
+                  ">
+                    PR AND SOCIAL MEMBER </br>
+                  </div>
+                    <button onclick="window.location.href='prso.html'">See More</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('{{ url_for('static', filename='images/saumya1.jpg') }}');">
+                <div class="content">
+                    <div class="name">SAUMYA TRIPATHI</div>
+                    <div class="des" style="
+                    background: transparent; /* Set background to transparent */
+                    color: rgb(248, 119, 231); /* Set text color to gold */
+                    font-size: 15px; 
+                    font-weight: bold; 
+                    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); 
+                    padding: 10px; 
+                    border: 2px solid #9a0286; 
+                    border-radius: 8px; 
+                    display: inline-block;
+                  ">
+                    WEB OPS TEAM MEMBER </br>
+                  </div>
+                    <button onclick="window.location.href='{{ url_for('saumya') }}'">See More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="button">
+            <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+    <script >
+        
+let next = document.querySelector('.next')
+let prev = document.querySelector('.prev')
+
+next.addEventListener('click', function(){
+    let items = document.querySelectorAll('.item')
+    document.querySelector('.slide').appendChild(items[0])
+})
+
+prev.addEventListener('click', function(){
+    let items = document.querySelectorAll('.item')
+    document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+})
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <header>
+    
+        <nav class="navbar">
+            <a href="/">Namdapha House</a>
+            <a href="/HC">House Council</a>
+            <a href="/pr">Pr & web ops team</a>
+            <a href="/Rc">Regional-Coordinators</a>
+            <a href="/Club">Clubs</a>
+            <a href="/Resource">Namdapha Resources</a>
+            <a href="announcement">Announcements</a>
+        </nav>
+    </header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style5.css') }}">
+    <style>
+        .back-link {
+            position: fixed; 
+            top: 10px; 
+            left: 10px; 
+            background-color: #007BFF; 
+            color: white; 
+            padding: 10px 15px; 
+            border: none; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-size: 16px; 
+            cursor: pointer; 
+        }
+        .back-link:hover {
+            background-color: #ff0000; 
+        }
+        .resource-item {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .resource-item h3 {
+            margin-right: 1rem;
+        }
+         /* Floating Navigation Bar */
+ .navbar {
+  position: fixed;
+  top: 2rem; /* Distance from the top of the page */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust to center the navbar */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for readability */
+  backdrop-filter: blur(10px); /* Add a glass-like effect */
+  padding: 0.8rem 2rem; /* Add padding for better spacing */
+  border-radius: 30px; /* Rounded corners for a floating look */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000; /* Ensure it stays above all content */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for a floating effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+  transform: translateX(-50%) translateY(-5px); /* Add a slight lift on hover */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ff7e5f;
+}
+    </style>
+</head>
+<body>
+    
+    <main>
+        
+
+        <section class="resources">
+            <h2>Namdapha Resources</h2>
+            <div class="content">
+                <div class="resource-item">
+                    <h3>Grievance Redressal Form:</h3>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdJA3D0q6cNGoqaMvorU9h1sQei0QCGTuktcAr6_dcZzUOnow/viewform">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Sept 2024 Grading Document DS:</h3>
+                    <a href="https://docs.google.com/document/d/1e1l9ERBGYoS2jhKZHcTP6zZUH_NLzJv99xdcyi21Z1Y/pub">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Student Handbook DS:</h3>
+                    <a href="https://drive.google.com/file/d/1reCLaan2aUfjcAvgXEFne7j3p1j93ZcQ/view">Link</a>
+                    
+                </div>
+                <div class="resource-item">
+                    <h3>Sept 2024 Grading Document ES:</h3>
+                    <a href="https://docs.google.com/document/u/1/d/158tmK_QXG4QuvPJCapd0LmvOSsKYzW3X1OXnYdiOCDQ/pub">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Student Handbook ES:</h3>
+                    <a href="https://docs.google.com/document/u/1/d/e/2PACX-1vSD1ldcEz7GatzyEJyMkQMZmSyf4INBZ8AlD3b8SV8jksl7HgYyKqOsR5QjuVYz8A/pub">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Acegrade PYQs, Notes:</h3>
+                    <a href="https://acegrade.in/">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Quiz and Endterm PYQ Practice:</h3>
+                    <a href="https://quizpractice.space/">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Namdapha Website Link:</h3>
+                    <a href="https://sites.google.com/student.onlinedegree.iitm.ac.in/namdapha">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Namdapha LinkedIn:</h3>
+                    <a href="https://www.linkedin.com/company/namdapha-iitm?trk=blended-typeahead">Link</a>
+                </div>
+                <div class="resource-item">
+                    <h3>Namdapha Instagram:</h3>
+                    <a href="https://www.instagram.com/namdapha_iitm/profilecard/?igsh=MW1qOGEzZjhnNWppeg==">Link</a>
+                </div>
+            </div>
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>If you have any doubt or need any help reach out to us.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Join Our Club | <a href="#privacy">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
