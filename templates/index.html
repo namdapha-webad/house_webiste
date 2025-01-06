@@ -1,16 +1,774 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namdapha House</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Namdapha House</h1>
-        <nav class="navbar">
-            <a href="/">Namdapha House</a>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Namdapha Website</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<style>@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			
+			@font-face {
+  font-family: 'WanoQuin';
+  src: url("{{ url_for('static', filename='WanoQuin-ExtraBold.otf') }}");
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+			
+			body {
+				color: #fff;
+				font-family: 'Lato', sans-serif;
+				overflow-x: hidden;
+				background-color: #141414;
+			}
+			
+			.navbar {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				padding: 0.75rem 1rem;
+				position: fixed;
+				top: 0;
+				width: 100vw;
+				background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(50, 50, 50, 0.9));
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				z-index: 1000;
+				backdrop-filter: blur(10px);
+			}
+			
+			.navbar button {
+				margin: 0 0.25rem;
+				padding: 0.5rem 1rem;
+				font-size: 0.875rem;
+				color: #fff;
+				background: rgba(201, 18, 18, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 4px;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.navbar button::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 300%;
+				height: 300%;
+				background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+				transform: translate(-50%, -50%) scale(0);
+				transition: transform 0.5s ease;
+				border-radius: 50%;
+				z-index: 0;
+			}
+			
+			.navbar button:hover::before {
+				transform: translate(-50%, -50%) scale(1);
+			}
+			
+			.navbar button:hover {
+				background: rgba(255, 255, 255, 0.2);
+				transform: translateY(-2px);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			}
+			
+			.navbar span {
+				position: absolute;
+				bottom: 0;
+				height: 2px;
+				width: 40px;
+				background: linear-gradient(90deg, transparent, #fff);
+				animation: animate 5s infinite linear;
+			}
+			
+			@keyframes animate {
+				0% {
+					transform: translateX(-100%);
+				}
+				100% {
+					transform: translateX(100vw);
+				}
+			}
+			
+			/* Logo Animation */
+			.navbar .logo {
+				font-size: 1.5rem; /* Slightly larger font size */
+				font-weight: bold;
+				color: #fff;
+				margin-right: 1rem;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+				transition: transform 0.3s ease, opacity 0.3s ease, text-shadow 0.3s ease;
+				position: relative;
+				overflow: hidden;
+				cursor: pointer;
+			}
+			.navbar .logo::before {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #fff, transparent);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.5s ease;
+			}
+			.navbar .logo:hover::before {
+				transform: scaleX(1);
+			}
+			
+			.navbar .logo:hover {
+				transform: scale(1.1);
+				opacity: 0.9;
+				text-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+			}
+			
+			/* Optional: Add a glowing effect to the text */
+			@keyframes glow-text {
+				0% {
+					text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.3);
+				}
+				50% {
+					text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.6);
+				}
+				100% {
+					text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.3);
+				}
+			}
+			
+			.navbar .logo.glow {
+				animation: glow-text 2s infinite alternate;
+			}
+			
+			.navbar .logo:hover {
+				transform: scale(1.1);
+				opacity: 0.8;
+			}
+			
+			/* Search Bar Animation */
+			.navbar .search-bar {
+				margin-left: auto;
+				padding: 0.5rem;
+				border-radius: 4px;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				background: rgba(255, 255, 255, 0.1);
+				color: #fff;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.navbar .search-bar::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+				transition: left 0.5s ease;
+			}
+			
+			.navbar .search-bar:focus::before {
+				left: 100%;
+			}
+			
+			.navbar .search-bar:focus {
+				outline: none;
+				border-color: rgba(255, 255, 255, 0.4);
+				background: rgba(255, 255, 255, 0.2);
+			}
+			
+			/* Glowing Border Animation */
+			.navbar::after {
+				content: '';
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				width: 100%;
+				height: 1px;
+				background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+				animation: glow 1.5s infinite alternate;
+			}
+			
+			@keyframes glow {
+				0% {
+					transform: scaleX(1);
+				}
+				100% {
+					transform: scaleX(1.05);
+				}
+			}
+			
+			
+			
+			
+			.logo {
+				text-transform: capitalize;
+				font-size: 30px;
+				cursor: pointer;
+				font-family: 'w', sans-serif; /* Ensure a fallback font */
+				color: #fff;
+				transition: transform 0.3s ease, opacity 0.3s ease, text-shadow 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.logo::before {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #fff, transparent);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.5s ease;
+			}
+			
+			.logo:hover::before {
+				transform: scaleX(1);
+			}
+			
+			.logo:hover {
+				transform: scale(1.1);
+				opacity: 0.9;
+				text-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+			}
+			
+			/* Optional Glowing Text Animation */
+			@keyframes glow-text {
+				0% {
+					text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.3);
+				}
+				50% {
+					text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.6);
+				}
+				100% {
+					text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.3);
+				}
+			}
+			
+			.logo.glow {
+				animation: glow-text 2s infinite alternate;
+			}
+			
+			/* List Styling with Hover Effects */
+			li {
+				list-style: none;
+				transition: transform 0.3s ease, opacity 0.3s ease;
+			}
+			
+			li:hover {
+				transform: translateX(10px);
+				opacity: 0.8;
+			}
+			
+			/* Link Styling with Hover Effects */
+			a {
+				color: #fff;
+				text-decoration: none;
+				transition: color 0.3s ease, text-shadow 0.3s ease;
+			}
+			
+			a:hover {
+				color: #30f8e7; /* Change to a highlight color */
+				text-shadow: 0 0 10px rgba(79, 8, 103, 0.5);
+			}
+			
+			/* Menu Styling with Hover Effects */	
+			.menu {
+				display: flex;
+				gap: 4rem;
+				text-transform: uppercase;
+				font-weight: 100;
+			}
+			
+			.menu li {
+				position: relative;
+			}
+			
+			.menu li::after {
+				content: '';
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #fff, transparent);
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform 0.5s ease;
+			}
+			
+			.menu li:hover::after {
+				transform: scaleX(1);
+			}
+			
+			/* Button Styling with Hover Effects */
+			.btn {
+				font-weight: 500;
+				text-transform: uppercase;
+				padding: 0.5rem 1rem;
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 4px;
+				color: #fff;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.btn::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 300%;
+				height: 300%;
+				background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+				transform: translate(-50%, -50%) scale(0);
+				transition: transform 0.5s ease;
+				border-radius: 50%;
+				z-index: 0;
+			}
+			
+			.btn:hover::before {
+				transform: translate(-50%, -50%) scale(1);
+			}
+			
+			.btn:hover {
+			 background: rgba(255, 255, 255, 0.2);
+				transform: translateY(-2px);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			}
+			
+			.wrapper {
+				display: flex;
+			}
+			
+			section {
+				width: 100vw;
+				flex-shrink: 0;
+				overflow: hidden;
+			}
+			
+			.video-section video {
+				height: 110vh;
+				width: 100vw;
+				object-fit: cover;
+				z-index: -2;
+				position: relative;
+			}
+			
+			.img-container {
+				position: absolute;
+				top: 0;
+				height: 110vh;
+				width: 100vw;
+			}
+			
+			.img {
+				object-fit: cover;
+				height: 100%;
+				width: 100%;
+			}
+			
+			.section {
+				background-color: #141414;
+				padding: 7rem;
+			}
+			
+			.boxes-container {
+				display: flex;
+				flex-direction: column;
+				gap: 8rem;
+			}
+			
+			.columns {
+				display: flex;
+				gap: 1.5rem;
+				position: relative;
+			}
+			
+			.col img {
+				object-fit: cover;
+			}
+			
+			.col-1 {
+				display: flex;
+				gap: 1.5rem;
+				flex: 5;
+			}
+			.box1 .col-1 img:first-child {
+				width: 150px;
+				height: 180px;
+				transform: translateY(-30px);
+			}
+			
+			.box1 .col-1 img:nth-child(2) {
+				width: 380px;
+				height: 430px;
+			}
+			
+			.col-3 {
+				display: flex;
+				justify-content: center;
+				gap: 2.5rem;
+				flex-wrap: wrap;
+				flex: 4;
+			}
+			
+			.box1 .col-3 img:first-child {
+				width: 320px;
+				height: 170px;
+				margin-top: 200px; /* Adjust this value to shift the image down */
+			}
+			
+			.box1 .col-3 img:nth-child(2) {
+				width: 150px;
+				margin-top: 20px; /* Adjust this value to shift the image down */
+			}
+			
+			.box1 .col-3 img:nth-child(3) {
+				width: 200px;
+				height: 200px;
+				margin-top: 20px; /* Adjust this value to shift the image down */
+			}
+			
+			
+			.col-2 {
+				margin: auto;
+				flex: 1.5;
+			}
+			
+			.col-2 h1 {
+				font-family: w;
+				font-size: 100px;
+				text-transform: capitalize;
+				position: absolute;
+				top: 50px;
+				left: 47%;
+				z-index: 100;
+			}
+			.box1 .col-2 h1 {
+				top: 0;
+			}
+			
+			.col-2 span {
+				font-size: 8px;
+				text-transform: uppercase;
+				letter-spacing: 3px;
+				opacity: 0.7;
+			}
+			
+			.line {
+				height: 1px;
+				width: 50px;
+				background-color: rgba(255, 255, 255, 0.1);
+				margin: 2rem 0;
+			}
+			
+			.text-box p {
+				font-size: 12px;
+				line-height: 1.9;
+				padding-bottom: 1rem;
+				opacity: 0.7;
+			}
+			
+			.box2 .col-1 img:first-child {
+				width: 200px;
+				height: 250px;
+				transform: translateY(200px);
+			}
+			
+			.box2 .col-1 img:nth-child(2) {
+				height: 380px;
+				width: 300px;
+			}
+			.box2 .col-3 img:nth-child(1) {
+				height: 300px;
+				width: 220px;
+			}
+			
+			.box2 .col-3 img:nth-child(2) {
+				width: 180px;
+				height: 200px;
+				align-self: flex-end;
+			}
+			.box2 .col-3 img:nth-child(3) {
+				width: 380px;
+				height: 200px;
+				transform: translateX(80px);
+			}
+			
+			.box3 .col-1 {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			
+			.box3 .col-1 img:nth-child(1) {
+				width: 200px;
+				height: 280px;
+				transform: translateX(30px);
+			}
+			.box3 .col-1 img:nth-child(2) {
+				width: 180px;
+				height: 200px;
+				margin-left: 80px;
+				align-self: center;
+			}
+			.box3 .col-1 img:nth-child(3) {
+				width: 280px;
+				height: 180px;
+			}
+			.box3 .col-1 img:nth-child(4) {
+				width: 250px;
+				height: 180px;
+				transform: translateY(-30px);
+			}
+			
+			.box3 .col-3 img {
+				width: 400px;
+				height: auto;
+			}
+			
+			footer {
+				background-color: #141414;
+				display: flex;
+				justify-content: space-between;
+				padding: 1.5rem 3rem;
+				border-top: 1px solid rgba(0, 0, 0, 0);
+			}
+			
+			.text-content {
+				position: absolute;
+				top: 0;
+				height: 100vh;
+				width: 100vw;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.title {
+				font-family: w;
+				width: 450px;
+				position: relative;
+				height: 110px;
+				overflow: hidden;
+			}
+			
+			.bg {
+				font-size: 100px;
+			}
+			
+			.sm {
+				font-size: 35px;
+				height: 40px;
+			}
+			
+			.left {
+				left: -25%;
+			}
+			
+			.right {
+				top: 50px;
+				left: 75%;
+			}
+			
+			.title span {
+				position: absolute;
+			}
+			
+			.n {
+				z-index: -1;
+			}
+			
+			.text-content p {
+				transform: translateY(150px);
+				text-transform: uppercase;
+				font-size: 12px;
+				letter-spacing: 12px;
+				font-weight: 300;
+			}
+			
+			.v_container {
+				position: absolute;
+				top: 0;
+				height: 100vh;
+				width: 100vw;
+				display: grid;
+				grid-template-columns: 2fr 1fr;
+				/* opacity: 0; */
+			}
+			
+			.left-side {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				padding: 4rem;
+				gap: 5rem;
+			}
+			
+			.tv {
+				font-family: w;
+				display: flex;
+				text-transform: capitalize;
+			}
+			
+			.bottom {
+				transform: translateY(70px);
+			}
+			
+			.text-container {
+				max-width: 260px;
+			}
+			
+			.text-container p {
+				padding-bottom: 1rem;
+				line-height: 1.4;
+				opacity: 0.8;
+			}
+			
+			.right-side {
+				/* background-color: blue; */
+				margin: auto;
+				width: 150px;
+				height: 150px;
+				border-top: 2px solid;
+				border-bottom: 2px solid;
+				border-color: rgba(255, 255, 255, 0.6);
+				border-radius: 50%;
+				position: relative;
+			}
+			
+			.right-side p {
+				position: absolute;
+				top: 45%;
+				left: -15%;
+				text-transform: uppercase;
+				font-size: 14px;
+			}
+			
+			.fa-arrow-right-long {
+				transform: translateX(20px);
+			}
+			
+			* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #141414;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg); /* Keeps the background consistent */
+  padding: 20px; /* Adds spacing around the container */
+}
+
+.container ul {
+  display: flex;
+  position: relative;
+  gap: 10px;
+}
+
+.container ul li {
+  position: relative;
+  list-style: none;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-top: 20px;   /* Adjust this value to move the item down */
+  margin-right: 150px; /* Adjust this value to move the item to the right */
+  margin-bottom: 20px; /* Adjust this value to move the item down further */
+  margin-left: 10px;   /* Adjust this value to move the item to the left */
+}
+
+.container ul li:before {
+  content: "";
+  position: absolute;
+  inset: 30px;
+  box-shadow: 0 0 0 10px var(--clr), 0 0 0 20px var(--bg), 0 0 0 22px var(--clr);
+  transition: 0.5s;
+}
+
+.container ul li:hover:before {
+  inset: 0;
+}
+
+.container ul li:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  transform: rotate(45deg);
+}
+
+.container ul li:hover {
+  z-index: 1000;
+  transform: scale(0.75);
+}
+
+.container ul li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--clr);
+  font-size: 1.5em;
+  z-index: 10;
+  transition: 0.5s;
+}
+
+.container ul li a:hover {
+  font-size: 3em;
+  filter: drop-shadow(0 0 20px var(--clr)) drop-shadow(0 0 40px var(--clr))
+    drop-shadow(0 0 60px var(--clr));
+}
+
+
+
+
+  
+			</style>
+	</head>
+
+	<!-- navbar  -->
+	<header>
+		<nav class="navbar">
+			<span> </span>
+			<div class="logo">Namdapha</div>
+			<ul class="menu">
+				<a href="/">Namdapha House</a>
             <a href="/HC">House Council</a>
             <a href="/pr">Pr & web ops team</a>
             <a href="/Rc">Regional-Coordinators</a>
@@ -18,31 +776,268 @@
             <a href="/Resource">Namdapha Resources</a>
             <a href="/announcement">Announcements</a>
             <a href="/joinus">JOIN US</a>
-        </nav>
-    </header>
+			</ul>
+		</nav>
+	</header>
 
-    <main>
-        <section class="hero">
-            <h2>Welcome to Namdapha House</h2>
-            <p>Welcome to House Namdapha. We're a family of 2800+ students - in diverse age groups, spread all over India - united by the spirit of our House.</p>
-        </section>
+	<div class="wrapper">
+		<!-- section 1  -->
+		<section class="video-section">
+			<div class="video-container">
+				<video src="{{ url_for('static', filename='images/Website.mp4') }}" loop muted autoplay></video>
+			</div>
+			<div class="img-container">
+				<img src="{{ url_for('static', filename='images/window.png') }}" alt="" class="img" />
+			</div>
+			<div class="text-content">
+				<div class="img_txt">
+					<div class="title sm left">
+						<span>between</span>
+					</div>
+					<div class="title bg left">
+						<span>Reality</span>
+					</div>
+					<div class="title bg right n">
+						<span>&</span>
+					</div>
+					<div class="title bg right">
+						<span>Dream</span>
+					</div>
+				</div>
+				<p class="txt-bottom">shots that will change your mind</p>
+			</div>
 
-        <section class="about">
-            <h2>About Us</h2>
-            <p>Welcome to Namdapha House.
-              
-              Our house is where you seek, share, support, and study together, and do what you love through our clubs and activities. These serve as a great place for freshers to get along with our fellow classmates, getting to know people a little better, sharing thoughts and interests, staying updated with their passions, and learning together as a community.</p>
-        </section>
+			<div class="v_container">
+				<div class="left-side">
+					<div class="tv">
+						<div class="bg">Nature's</div>
+						<div class="sm">true</div>
+						<div class="bg bottom">Pride</div>
+					</div>
+					<div class="text-container">
+						<p>
+							Join a vibrant community where freshers connect, share passions, and grow together. Make friends, explore interests, and thrive in a friendly, creative atmosphere.
+						</p>
+						<p>
+							It’s more than just meeting—start clubs, learn, and create opportunities as we grow and succeed together.
+						</p>
+					</div>
+				</div>
+				<div class="right-side">
+					<p>explore works <i class="fa-solid fa-arrow-right-long"></i></p>
+				</div>
+			</div>
+		</section>
 
-        <section class="contact">
-            <h2>Contact Us</h2>
-            <p>Instagram | YouTube | LinkedIn</p>
-            <p>From Namdapha House, IITM</p>
-        </section>
-    </main>
+		<!-- section 2  -->
 
-    <footer class="footer">
-        <p>&copy; 2024 Namdapha House | <a href="#privacy">Privacy Policy</a></p>
-    </footer>
-</body>
+		<section class="section">
+			<div class="boxes-container">
+				<div class="columns box1">
+					<div class="col col-1">
+						<img src="{{ url_for('static', filename='images/namdaphaphoto1.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphaphoto2.jpg') }}" alt="" />
+					</div>
+					<div class="col-2">
+						<h1>Sooryakiran B</h1>
+						<div class="line"></div>
+						<div class="text-box">
+							<p style="font-size: 20px;">
+								My free time is spent creating these kinds of arts as an amateur artist. I have an Insta account dedicated to my art posts. I would appreciate likes and shares if you would follow me there.
+							</p>
+							
+						</div>
+					</div>
+					<div class="col col-3">
+						<img src="{{ url_for('static', filename='images/namdaphaphoto3.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphaphoto4,jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphaphoto5.jpg') }}" alt="" />
+					</div>
+				</div>
+				<div class="columns box2">
+					<div class="col col-1">
+						<img src="{{ url_for('static', filename='images/namdaphab1.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphab2.jpg') }}" alt="" />
+					</div>
+					<div class="col-2">
+						<h1>click._the_pic</h1>
+				
+						<div class="line"></div>
+						<div class="text-box">
+							<p>
+								INFO	
+							</p>
+					
+						</div>
+					</div>
+					<div class="col col-3">
+						<img src="{{ url_for('static', filename='images/namdaphab3.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphab4.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphab5.jpg') }}" alt="" />
+					</div>
+				</div>
+				<div class="columns box3">
+					<div class="col col-1">
+						<img src="{{ url_for('static', filename='images/namdaphac5.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphac2.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphac3.jpg') }}" alt="" />
+						<img src="{{ url_for('static', filename='images/namdaphac4.jpg') }}" alt="" />
+					</div>
+					<div class="col-2">
+						<h1>Sachin Joshi</h1>
+						<div class="line"></div>
+						<div class="text-box">
+							<p style="font-size: 20px;">
+								Beginning with a single pencil, my drawing journey led me to discover lots of shades of charcoal!
+							</p>
+							
+							
+						</div>
+					</div>
+					<div class="col col-3">
+						<img src="./media/b5.webp" alt="" />
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- footer  -->
+	<footer class="footer">
+		<div class="container">
+		  <ul>
+			<li style="--clr: #c32aa3">
+			  <a href="https://www.instagram.com/namdapha_iitm/" target="_blank">
+				<i class="fa-brands fa-instagram"></i>
+			  </a>
+			</li>
+			<li style="--clr: #25d366">
+			  <a href="/joinus" target="_blank">
+				<i class="fa-brands fa-whatsapp"></i>
+			  </a>
+			</li>
+			<li style="--clr: #0077b5"> <!-- LinkedIn's brand color -->
+			  <a href="https://in.linkedin.com/company/namdapha-iitm" target="_blank">
+				<i class="fa-brands fa-linkedin"></i> <!-- LinkedIn icon class -->
+			  </a>
+			</li>
+			<li style="--clr: #ff0000">
+			  <a href="https://www.youtube.com/channel/UC1TJTjFQlnUvD6RfDP117EQ" target="_blank">
+				<i class="fa-brands fa-youtube"></i>
+			  </a>
+			</li>
+		  </ul>
+		</div>
+		
+	  </footer>
+	  
+
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.5/ScrollTrigger.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+
+		<script>gsap.registerPlugin(ScrollTrigger);
+
+			ScrollTrigger.defaults({
+				toggleActions: 'play none none reverse',
+			});
+			
+			gsap.to('.img-container', {
+				scale: 52,
+				ease: 'ease',
+				scrollTrigger: {
+					trigger: '.video-section',
+					scrub: 1,
+					start: 'top top',
+					end: 'bottom',
+					pin: true,
+				},
+			});
+			
+			gsap.to('.right', {
+				autoAlpha: 0,
+				x: 500,
+				duration: 1.5,
+				scrollTrigger: {
+					start: 1,
+				},
+			});
+			gsap.to('.left', {
+				autoAlpha: 0,
+				x: -500,
+				duration: 1.5,
+				scrollTrigger: {
+					start: 1,
+				},
+			});
+			
+			gsap.to('.txt-bottom', {
+				autoAlpha: 0,
+				letterSpacing: -10,
+				duration: 2,
+				scrollTrigger: {
+					start: 2,
+				},
+			});
+			
+			const tl = gsap.timeline();
+			
+			tl.from('.left-side div', {
+				y: 150,
+				opacity: 0,
+				stagger: {
+					amount: 0.4,
+				},
+				delay: 0.5,
+			})
+				.from('.right-side', { opacity: 0, duration: 2 }, 0.5)
+				.to('.wrapper', { x: -window.innerWidth });
+			
+			ScrollTrigger.create({
+				animation: tl,
+				trigger: '.wrapper',
+				start: 'top top',
+				end: '+=600',
+				scrub: 1,
+				pin: true,
+				ease: 'ease',
+			});
+			
+			gsap.utils.toArray('.col').forEach(image => {
+				gsap.fromTo(
+					image,
+					{
+						opacity: 0.3,
+						x: 0,
+					},
+					{
+						opacity: 1,
+						x: -50,
+						scrollTrigger: {
+							trigger: image,
+							start: '10%',
+							stagger: {
+								amount: 0.4,
+							},
+						},
+					},
+				);
+			});
+			
+			const timeline = gsap.timeline();
+			
+			timeline
+				.from('.title span', {
+					y: 150,
+					skewY: 7,
+					duration: 3,
+				})
+				.from('.txt-bottom', {
+					letterSpacing: -10,
+					opacity: 0,
+					duration: 3,
+				});
+			</script>
+	</body>
 </html>
