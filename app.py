@@ -14,11 +14,6 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = 'house_web'
 
-
-# or else some popup or div container when click on see more option 
-# otp generation and email sending to users 
-# clubs page finalising and popup or div container to show club information 
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -202,6 +197,13 @@ def saumya():
 @app.route('/hari')
 def hari():
     return render_template("hari.html")
+
+@app.route('/pastevent')
+def pastevent():
+    return render_template("pastevent.html")
+
+
+
 @app.route('/joinus', methods=['GET', 'POST'])
 def joinus():
     # Dictionary for region-specific WhatsApp links
