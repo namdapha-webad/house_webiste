@@ -61,6 +61,12 @@ class FormSubmission(db.Model):
     def __repr__(self):
         return f'<FormSubmission {self.email}>'
 
+
+@app.before_request
+def redirect_http_to_https():
+    if request.url.startswith('http://'):
+        return redirect(request.url.replace('http://','https://',1),code=301)
+
 @app.route('/view_data')
 def view_data():
 
