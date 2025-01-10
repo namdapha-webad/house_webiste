@@ -10,7 +10,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            background-image: url("{{ url_for('static', filename='images/namdaphab2.jpg') }}");
+            background-image: url("{{ url_for('static', filename='images/event_bg_2.jpeg') }}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -213,6 +213,9 @@
         <div class="club-item" data-club="Namdapha">
             <img src="{{ url_for('static', filename='images/paradox_logo.png') }}" alt="Club 3 Logo" class="club-logo">
         </div>
+        <div class="club-item" data-club="Namdapha_only">
+            <img src="{{ url_for('static', filename='images/namdapha_logo_event.jpg') }}" alt="Club 3 Logo" class="club-logo">
+        </div>
     </div>
 
     <!-- Modal Structure -->
@@ -241,7 +244,7 @@
         // Event Details for each club (You can add more clubs and details here)
         const clubEventDetails = {
             club1: {
-                name: "Club 1",
+                name: "Sahyog",
                 events: [
                     {
                         poster: "{{ url_for('static', filename='images/event1.jpg') }}",
@@ -256,7 +259,7 @@
                 ]
             },
             club2: {
-                name: "Club 2",
+                name: "Fearless Orators",
                 events: [
                     {
                         poster: "{{ url_for('static', filename='images/event3.jpg') }}",
@@ -266,7 +269,7 @@
                 ]
             },
             club3: {
-                name: "Club 3",
+                name: "STEMONEFF COMMUNITY",
                 events: [
                     {
                         poster: "{{ url_for('static', filename='images/event4.jpg') }}",
@@ -275,13 +278,23 @@
                     }
                 ]
             },
-            club3: {
-                name: "Namdapha",
+            Namdapha: {
+                name: "Namdapha X Paradox",
                 events: [
                     {
                         poster: "{{ url_for('static', filename='images/event4.jpg') }}",
                         link: "https://example.com/event4",
                         description: "Club 3 held a coding hackathon on November 20th, 2023."
+                    }
+                ]
+            },
+            Namdapha_only: {
+                name: "Namdapha",
+                events: [
+                    {
+                        poster: "{{ url_for('static', filename='images/event4.jpg') }}",
+                        link: "https://example.com/event4",
+                        description: "organized Sandhya Darshan."
                     }
                 ]
             },
