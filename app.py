@@ -157,7 +157,7 @@ def create_app():
 
     @app.route('/pr')
     def pr():
-        return render_template("pr-team.html")
+        return render_template("Pr-team.html")
 
     @app.route('/Club')
     def Club():
@@ -260,7 +260,7 @@ def create_app():
             else:
                 flash('Email not found. Please check your email or contact admin.', 'danger')
 
-        return render_template('joinus.html')
+        return render_template('Joinus.html')
 
 
 
