@@ -9,7 +9,8 @@ from werkzeug.utils import secure_filename
 
 
 
- db = SQLAlchemy(app)
+db = SQLAlchemy()
+
 def create_app():
 
     app = Flask(__name__)
@@ -273,10 +274,12 @@ def create_app():
         else:
             return "Excel file not found!"
 
+
+    return app
     #postgresql://namdapha_database_user:kMf47MQ0YmvcyXR8JYRaTLzmdQxmLiiC@dpg-cu0uelt2ng1s73e3eei0-a.oregon-postgres.render.com/namdapha_database
 
 if __name__ == '__main__':
-    app = create_app() 
+    app = create_app()
     with app.app_context():
-        db.create_all()
+        db.create_all()  # Create tables if they don't exist
     app.run(debug=True, ssl_context=('cert.pem', 'key.pem'))
