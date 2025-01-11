@@ -4,31 +4,20 @@ from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from flask_mail import Mail, Message
 from random import randint
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = 'house_web'
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = os.environ.get('namdapha-webad@ds.study.iitm.ac.in')
-app.config['MAIL_PASSWORD'] = os.environ.get('IITM_webadmin_2024')
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+
+
 UPLOAD_FOLDER = '/Users/mr.sairajnanda/Documents/House-website-main/House-website-main/house-website-master'
 ALLOWED_EXTENSIONS = {'xlsx'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-mail = Mail(app)
+
 db = SQLAlchemy(app)
 
 
@@ -62,10 +51,6 @@ class FormSubmission(db.Model):
         return f'<FormSubmission {self.email}>'
 
 
-@app.before_request
-def redirect_http_to_https():
-    if request.url.startswith('http://'):
-        return redirect(request.url.replace('http://','https://',1),code=301)
 
 @app.route('/view_data')
 def view_data():
@@ -283,10 +268,10 @@ def populate():
     else:
         return "Excel file not found!"
 
-
+#postgresql://namdapha_database_user:kMf47MQ0YmvcyXR8JYRaTLzmdQxmLiiC@dpg-cu0uelt2ng1s73e3eei0-a.oregon-postgres.render.com/namdapha_database
 
 if __name__ == '__main__':
     
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=True, ssl_context=('cert.pem', 'key.pem'))
