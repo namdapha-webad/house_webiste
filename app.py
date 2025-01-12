@@ -16,7 +16,7 @@ def create_app():
     app = Flask(__name__)
 
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///rj.db"
 
 
     UPLOAD_FOLDER = '/Users/mr.sairajnanda/Documents/House-website-main/House-website-main/house-website-master'
