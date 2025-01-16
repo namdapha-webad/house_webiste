@@ -19,7 +19,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///rj.db"
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
-    UPLOAD_FOLDER = '/Users/mr.sairajnanda/Documents/House-website-main/House-website-main/house-website-master'
+    UPLOAD_FOLDER = '/tmp'
     ALLOWED_EXTENSIONS = {'xlsx'}
 
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
