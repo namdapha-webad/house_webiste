@@ -16,7 +16,10 @@ def create_app():
     app = Flask(__name__)
 
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///rj.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = (
+        "postgresql://namdapha_database_user:kMf47MQ0YmvcyXR8JYRaTLzmdQxmLiiC"
+        "@dpg-cu0uelt2ng1s73e3eei0-a.oregon-postgres.render.com/namdapha_database"
+    )
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
     UPLOAD_FOLDER = '/tmp'
