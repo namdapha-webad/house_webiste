@@ -6,7 +6,7 @@ import numpy as np
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from random import randint
 from werkzeug.utils import secure_filename
-
+import tempfile
 
 
 db = SQLAlchemy()
@@ -17,7 +17,7 @@ def create_app():
 
 
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///rj.db"
-
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
     UPLOAD_FOLDER = '/Users/mr.sairajnanda/Documents/House-website-main/House-website-main/house-website-master'
     ALLOWED_EXTENSIONS = {'xlsx'}
@@ -113,33 +113,33 @@ def create_app():
     @app.route('/upload', methods=['GET', 'POST'])
     def upload_file():
         if request.method == 'POST':
-            
             if 'file' not in request.files:
                 flash('No file part', 'danger')
                 return redirect(request.url)
 
             file = request.files['file']
-            
-            
+
             if file.filename == '':
                 flash('No selected file', 'danger')
                 return redirect(request.url)
 
-            
             if file and allowed_file(file.filename):
-                
                 filename = secure_filename(file.filename)
                 file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
+                # Ensure upload folder exists
                 if not os.path.exists(app.config['UPLOAD_FOLDER']):
                     os.makedirs(app.config['UPLOAD_FOLDER'])
 
+                # Save the uploaded file
                 file.save(file_path)
+
+                # Process the file (for example, populate DB)
                 populate_db_from_excel(file_path)
-                
+
                 flash('Database updated successfully!', 'success')
                 return redirect(url_for('upload_file'))
-        
+
         return render_template('upload.html')
 
 
@@ -282,4 +282,4 @@ if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         db.create_all()  # Create tables if they don't exist
-    app.run(debug=True, ssl_context=('cert.pem', 'key.pem'))
+    app.run(debug=True)
