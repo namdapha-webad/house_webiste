@@ -162,6 +162,11 @@ def create_app():
     def pr():
         return render_template("Pr-team.html")
 
+    @app.route('/upcomingevents')
+    def upcoming_event():
+        return render_template('upcomingevents.html')
+
+
     @app.route('/Club')
     def Club():
         return render_template("clubs.html")
