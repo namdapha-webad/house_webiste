@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Links</title>
     <header>
     
         <nav class="navbar">
@@ -14,37 +17,25 @@
             <a href="announcement">Announcements</a>
         </nav>
     </header>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style5.css') }}">
     <style>
-        .back-link {
-            position: fixed; 
-            top: 10px; 
-            left: 10px; 
-            background-color: #007BFF; 
-            color: white; 
-            padding: 10px 15px; 
-            border: none; 
-            border-radius: 5px; 
-            text-decoration: none; 
-            font-size: 16px; 
-            cursor: pointer; 
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
         }
-        .back-link:hover {
-            background-color: #ff0000; 
+
+
+        body {
+            background-color: #000;
         }
-        .resource-item {
-            display: flex;
-            align-items: center;
-            margin: 1rem 0;
+
+        .wrapper {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 80rem;
         }
-        .resource-item h3 {
-            margin-right: 1rem;
-        }
-         /* Floating Navigation Bar */
- .navbar {
+        .navbar {
   position: fixed;
   top: 2rem; /* Distance from the top of the page */
   left: 50%; /* Center horizontally */
@@ -78,67 +69,406 @@
 .navbar a:hover {
   color: #ff7e5f;
 }
+
+        .cols {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .col {
+            width: calc(25% - 2rem);
+            margin: 1rem;
+            cursor: pointer;
+
+        }
+
+        .container {
+    position: relative; 
+    top: 150px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 100%;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+
+        .front,
+        .back {
+            background-size: cover;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            background-position: center;
+            -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            text-align: center;
+            min-height: 280px;
+            box-shadow: 0 0 10px solid blue;
+
+            height: auto;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .back {
+            background: #cedce7;
+            background: -webkit-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+            background: -o-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+            background: linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+        }
+
+        .front:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            content: '';
+            display: block;
+            opacity: .6;
+            background-color: #000;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .container:hover .front,
+        .container:hover .back {
+            -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+
+        .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .inner {
+            -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+            transform: translateY(-50%) translateZ(60px) scale(0.94);
+            top: 50%;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            outline: 1px solid transparent;
+            -webkit-perspective: inherit;
+            perspective: inherit;
+            z-index: 2;
+        }
+
+        .container .back {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .container .front {
+            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .container:hover .back {
+            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .container:hover .front {
+            -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .front .inner p {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .front .inner p:after {
+            content: '';
+            width: 4rem;
+            height: 2px;
+            position: absolute;
+            background: #C6D4DF;
+            display: block;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: -.75rem;
+        }
+
+        .front .inner span {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Montserrat';
+            font-weight: 300;
+        }
+
+        @media screen and (max-width: 64rem) {
+            .col {
+                width: calc(33.333333% - 2rem);
+            }
+        }
+
+        @media screen and (max-width: 48rem) {
+            .col {
+                width: calc(50% - 2rem);
+            }
+        }
+
+        @media screen and (max-width: 32rem) {
+            .col {
+                width: 100%;
+                margin: 0 0 2rem 0;
+            }
+        }
+        button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+    z-index: 1;
+}
+
+/* Continuous Pulsating Animation */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 12px 20px rgba(255, 120, 90, 0.5);
+    }
+}
+
+button:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 80%);
+    transform: scale(0);
+    transition: transform 0.5s ease-out;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+button:hover:before {
+    transform: scale(1);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #feb47b, #ff7e5f);
+    box-shadow: 0 15px 25px rgba(255, 120, 90, 0.5);
+    transform: translateY(-3px) rotate(-2deg);
+}
+
+button:active {
+    transform: translateY(1px) rotate(0);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ripple Effect on Click */
+button:focus::before {
+    content: '';
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+    z-index: -1;
+}
+
+@keyframes ripple {
+    to {
+        width: 300%;
+        height: 300%;
+        opacity: 0;
+    }
+}
+
+/* Shimmering Text Effect */
+button span {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.8) 70%);
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+
+
     </style>
 </head>
+
 <body>
+    <div class="wrapper">
+        <div class="cols">
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://www.ihs.ac.in/assets/images/grievance-cell.jpg)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span><b>Grievance Redressal Form</b></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Report your concerns and get them addressed!</p>
+                            <button onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdJA3D0q6cNGoqaMvorU9h1sQei0QCGTuktcAr6_dcZzUOnow/viewform'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://3.files.edl.io/63c5/20/04/16/173016-fe745bf9-b13b-4ad1-a027-c1e167e329e6.jpg)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span>Jan 2025 Grading document <b>DS</b></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Review your grades and understand the evaluation criteria <br>(DS students)</p>
+                            <button onclick="window.location.href='https://docs.google.com/document/d/e/2PACX-1vRBH1NuM3ML6MH5wfL2xPiPsiXV0waKlUUEj6C7LrHrARNUsAEA1sT2r7IHcFKi8hvQ45gSrREnFiTT/pub'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://www.denairusd.org/pictures/student-handbook.png)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span>Student Handbook <b>DS</b></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Your guide to policies, procedures, and resources to support your academic journey. <br>(DS students)</p>
+                            <button onclick="window.location.href='https://drive.google.com/file/d/1reCLaan2aUfjcAvgXEFne7j3p1j93ZcQ/view'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://happenings.lpu.in/wp-content/uploads/2018/07/Grading-System-in-LPU.jpg)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span>Jan 2025 Grading document <b>ES</b></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Review your grades and understand the evaluation criteria <br>(ES students)</p>
+                            <button onclick="window.location.href='https://docs.google.com/document/u/1/d/e/2PACX-1vQY8mhaU0p_gQGOA8MPkaxdrqVaKgatjTmxEnecxm600ubu0_fFPuPgaKVOssOgqPhcvTRRrU4Yha6S/pub'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJcQd9-I8TYcD2q-0zUwalns-Iw9rCji2f2VuCWaKn3uAWrmuIeNeFz38mv-7JuCPN7z0&usqp=CAU)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span>Student Handbook <b>ES</b></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Your guide to policies, procedures, and resources to support your academic journey. <br>(DS students)</p>
+                            <button onclick="window.location.href='https://docs.google.com/document/u/1/d/e/2PACX-1vSD1ldcEz7GatzyEJyMkQMZmSyf4INBZ8AlD3b8SV8jksl7HgYyKqOsR5QjuVYz8A/pub'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://media.licdn.com/dms/image/v2/D560BAQF4chq-799tQg/company-logo_200_200/company-logo_200_200/0/1727059179903/ace_grade_logo?e=2147483647&v=beta&t=MpskODTN2BKWWnswpYQBz3RGa0RcvycowFmKEgNsrrc)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span>Acegrade PYQs, Notes</span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Key resources for exam preparation and concept clarity.</p>
+                            <button onclick="window.location.href='https://acegrade.in/'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(https://play-lh.googleusercontent.com/3WvX70IIziCoKKM29BKLmB0XGrhmjTeYNlxhVkRYhK5QuPUcqyUao1b3ITxiD4wxSJQg)">
+                        <div class="inner">
+                            <p>Namdapha Resources</p>
+                            <span>Quiz and Endterm PYQ Practice</span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p>Test your knowledge and prepare effectively for exams using previous year questions.</p>
+                            <button onclick="window.location.href='https://quizpractice.space/'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <main>
-        
-
-        <section class="resources">
-            <h2>Namdapha Resources</h2>
-            <div class="content">
-                <div class="resource-item">
-                    <h3>Grievance Redressal Form:</h3>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdJA3D0q6cNGoqaMvorU9h1sQei0QCGTuktcAr6_dcZzUOnow/viewform">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Sept 2024 Grading Document DS:</h3>
-                    <a href="https://docs.google.com/document/d/1e1l9ERBGYoS2jhKZHcTP6zZUH_NLzJv99xdcyi21Z1Y/pub">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Student Handbook DS:</h3>
-                    <a href="https://drive.google.com/file/d/1reCLaan2aUfjcAvgXEFne7j3p1j93ZcQ/view">Link</a>
-                    
-                </div>
-                <div class="resource-item">
-                    <h3>Sept 2024 Grading Document ES:</h3>
-                    <a href="https://docs.google.com/document/u/1/d/158tmK_QXG4QuvPJCapd0LmvOSsKYzW3X1OXnYdiOCDQ/pub">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Student Handbook ES:</h3>
-                    <a href="https://docs.google.com/document/u/1/d/e/2PACX-1vSD1ldcEz7GatzyEJyMkQMZmSyf4INBZ8AlD3b8SV8jksl7HgYyKqOsR5QjuVYz8A/pub">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Acegrade PYQs, Notes:</h3>
-                    <a href="https://acegrade.in/">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Quiz and Endterm PYQ Practice:</h3>
-                    <a href="https://quizpractice.space/">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Namdapha Website Link:</h3>
-                    <a href="https://sites.google.com/student.onlinedegree.iitm.ac.in/namdapha">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Namdapha LinkedIn:</h3>
-                    <a href="https://www.linkedin.com/company/namdapha-iitm?trk=blended-typeahead">Link</a>
-                </div>
-                <div class="resource-item">
-                    <h3>Namdapha Instagram:</h3>
-                    <a href="https://www.instagram.com/namdapha_iitm/profilecard/?igsh=MW1qOGEzZjhnNWppeg==">Link</a>
-                </div>
-            </div>
-            <div class="contact">
-                <h3>Contact Us</h3>
-                <p>If you have any doubt or need any help reach out to us.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2024 Join Our Club | <a href="#privacy">Privacy Policy</a></p>
-    </footer>
 </body>
+
 </html>
