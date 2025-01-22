@@ -209,66 +209,66 @@ def create_app():
 
 
 
-    @app.route('/joinus', methods=['GET', 'POST'])
-    def joinus():
-        # Dictionary for region-specific WhatsApp links
-        region_links = {
-            "Mumbai": "https://chat.whatsapp.com/mumbai_group_link",
-            "Kolkata": "https://chat.whatsapp.com/kolkata_group_link",
-            "Chennai": "https://chat.whatsapp.com/chennai_group_link",
-            "Delhi-NCR": "https://chat.whatsapp.com/delhi_ncr_group_link",
-            "Chandigarh": "https://chat.whatsapp.com/chandigarh_group_link",
-            "Lucknow": "https://chat.whatsapp.com/lucknow_group_link",
-            "Patna": "https://chat.whatsapp.com/patna_group_link",
-            "Bangalore": "https://chat.whatsapp.com/bangalore_group_link",
-            "Hyderabad": "https://chat.whatsapp.com/hyderabad_group_link"
-        }
+    # @app.route('/joinus', methods=['GET', 'POST'])
+    # def joinus():
+    #     # Dictionary for region-specific WhatsApp links
+    #     region_links = {
+    #         "Mumbai": "https://chat.whatsapp.com/mumbai_group_link",
+    #         "Kolkata": "https://chat.whatsapp.com/kolkata_group_link",
+    #         "Chennai": "https://chat.whatsapp.com/chennai_group_link",
+    #         "Delhi-NCR": "https://chat.whatsapp.com/delhi_ncr_group_link",
+    #         "Chandigarh": "https://chat.whatsapp.com/chandigarh_group_link",
+    #         "Lucknow": "https://chat.whatsapp.com/lucknow_group_link",
+    #         "Patna": "https://chat.whatsapp.com/patna_group_link",
+    #         "Bangalore": "https://chat.whatsapp.com/bangalore_group_link",
+    #         "Hyderabad": "https://chat.whatsapp.com/hyderabad_group_link"
+    #     }
 
-        # Link for female-specific WhatsApp group
-        female_group_link = "https://chat.whatsapp.com/female_group_link"
+    #     # Link for female-specific WhatsApp group
+    #     female_group_link = "https://chat.whatsapp.com/female_group_link"
 
-        if request.method == 'POST':
-            email = request.form.get('email')
-            name = request.form.get('name')
-            house = request.form.get('house')
-            region = request.form.get('region')  # Get region from form
-            gender = request.form.get('gender')  # Get gender from form
-            phone = request.form.get('phone')
+    #     if request.method == 'POST':
+    #         email = request.form.get('email')
+    #         name = request.form.get('name')
+    #         house = request.form.get('house')
+    #         region = request.form.get('region')  # Get region from form
+    #         gender = request.form.get('gender')  # Get gender from form
+    #         phone = request.form.get('phone')
 
-            # Check if the email exists in the Student table
-            student = Student.query.filter_by(email=email).first()
+    #         # Check if the email exists in the Student table
+    #         student = Student.query.filter_by(email=email).first()
 
-            if student:
-                # Store the form submission in the FormSubmission table
-                new_submission = FormSubmission(
-                    email=email,
-                    name=name,
-                    house=house,
-                    region=region,
-                    gender=gender,
-                    phone=phone
-                )
-                db.session.add(new_submission)
-                db.session.commit()
+    #         if student:
+    #             # Store the form submission in the FormSubmission table
+    #             new_submission = FormSubmission(
+    #                 email=email,
+    #                 name=name,
+    #                 house=house,
+    #                 region=region,
+    #                 gender=gender,
+    #                 phone=phone
+    #             )
+    #             db.session.add(new_submission)
+    #             db.session.commit()
 
-                # Fetch the region-specific WhatsApp link
-                region_link = region_links.get(region)
+    #             # Fetch the region-specific WhatsApp link
+    #             region_link = region_links.get(region)
 
-                if region_link:
-                    # If the user is female, provide both region and female-specific group links
-                    if gender.lower() == 'female':
-                        flash(f'Details submitted successfully! Here is your {region} WhatsApp group link: {region_link}', 'success')
-                        flash(f'Additionally, join the female WhatsApp group link: {female_group_link}', 'success')
-                    else:
-                        flash(f'Details submitted successfully! Here is your {region} WhatsApp group link: {region_link}', 'success')
-                else:
-                    flash('Selected region is invalid.', 'danger')
+    #             if region_link:
+    #                 # If the user is female, provide both region and female-specific group links
+    #                 if gender.lower() == 'female':
+    #                     flash(f'Details submitted successfully! Here is your {region} WhatsApp group link: {region_link}', 'success')
+    #                     flash(f'Additionally, join the female WhatsApp group link: {female_group_link}', 'success')
+    #                 else:
+    #                     flash(f'Details submitted successfully! Here is your {region} WhatsApp group link: {region_link}', 'success')
+    #             else:
+    #                 flash('Selected region is invalid.', 'danger')
 
-                return redirect("/joinus")  # Redirect back or to some other page
-            else:
-                flash('Email not found. Please check your email or contact admin.', 'danger')
+    #             return redirect("/joinus")  # Redirect back or to some other page
+    #         else:
+    #             flash('Email not found. Please check your email or contact admin.', 'danger')
 
-        return render_template('Joinus.html')
+    #     return render_template('Joinus.html')
 
 
 
