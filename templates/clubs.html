@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clubs</title>
-    <style>
+     <style>
+        /* Basic styles */
         body {
             background-color: #000000;
             display: flex;
@@ -12,10 +13,13 @@
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
+            margin: 0;
         }
+
+        /* Navbar */
         .navbar {
             position: fixed;
-            top: 2rem;
+            top: 1rem;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.8);
@@ -27,7 +31,6 @@
             align-items: center;
             z-index: 1000;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .navbar a {
@@ -43,89 +46,85 @@
             color: #ff7e5f;
         }
 
+        /* Image gallery container */
         .container {
             display: flex;
-            padding-left: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            margin-top: 100px;
+            width: 100%;
         }
 
         .image-box {
             position: relative;
+            margin: 15px;
         }
 
+        /* Responsive image gallery */
         .image-box img {
             filter: saturate(0%);
-            width: 10%;
+            width: 100%;
+            max-width: 120px;
             border: 2px solid seashell;
-            height: 100%;
+            height: auto;
             object-fit: cover;
             border-radius: 12px;
-            transition: all ease 0.4s;
+            transition: all 0.4s ease;
             cursor: pointer;
-            margin-left: 10px;
         }
 
         .image-box img:hover {
             filter: saturate(100%);
-            width: 30%;
+            transform: scale(1.2);
             box-shadow: 0 0 20px #00fffc, 0 0 40px #00fffc, 0 0 60px #00fffc;
         }
 
+        /* Pop-up text on hover */
         .popup {
             position: absolute;
-            bottom: 45%;
+            bottom: 100%;
             left: 50%;
-            transform: translateX(-50%) translateY(10px); 
+            transform: translateX(-50%);
             background: linear-gradient(135deg, #ff6a00, #ee0979);
             color: #ffffff;
-            padding: 15px 20px;
+            padding: 10px 15px;
             border-radius: 12px;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             box-shadow: 0 8px 20px rgba(255, 106, 0, 0.5);
             opacity: 0;
-            transition: all 0.3s ease, opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
             white-space: nowrap;
             z-index: 10;
-            transform-origin: bottom;
         }
 
         .image-box:hover .popup {
             opacity: 1;
-            transform: translateX(-50%) translateY(0) scale(1.05);
-            animation: pop-in 0.3s ease;
+            transform: translateX(-50%) translateY(-10px);
         }
 
-        @keyframes pop-in {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(10px) scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) scale(1);
-            }
-        }
-
+        /* Modal styling */
         .modal {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, 100%);
-            width: 80%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 700px;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             opacity: 0;
             visibility: hidden;
-            transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
             z-index: 100;
         }
 
         .modal.active {
             opacity: 1;
             visibility: visible;
-            transform: translate(-50%, -50%);
         }
 
         .modal h2 {
@@ -142,20 +141,22 @@
             float: right;
         }
 
+        /* Club profiles within modal */
         .club-details {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-around;
         }
 
         .club-details .profile {
-            flex: 1;
+            flex: 1 1 200px;
             margin: 15px;
             text-align: center;
         }
 
         .club-details .profile img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
@@ -165,27 +166,71 @@
             margin: 5px 0;
         }
 
-        .membership-form {
-            margin-top: 20px;
-        }
-
+        /* Social Links */
         .social-links {
             margin-top: 20px;
+            text-align: center;
         }
 
         .social-links a {
-            margin-right: 10px;
+            margin: 0 10px;
+            display: inline-block;
             color: #0000ff;
         }
 
-        .event-links {
-            margin-top: 20px;
+        .social-links img {
+            width: 24px;
+            height: 24px;
         }
 
-        .event-links a {
-            display: block;
-            color: #0000ff;
-            margin-bottom: 5px;
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .navbar a {
+                margin: 0.5rem 0;
+            }
+
+            .image-box img {
+                max-width: 90px;
+            }
+
+            .popup {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .modal {
+                width: 95%;
+            }
+
+            .club-details .profile img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar a {
+                font-size: 0.9rem;
+            }
+
+            .image-box img {
+                max-width: 70px;
+            }
+
+            .popup {
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+
+            .club-details .profile img {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
     <header>

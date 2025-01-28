@@ -324,6 +324,100 @@ nav {
           justify-content: flex-start;
         }
       }
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .header__container {
+          grid-template-columns: 1fr;
+        }
+
+        .header__image img {
+          max-width: 300px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 0.5rem 1rem;
+        }
+
+        .nav__logo img {
+          max-width: 50px;
+        }
+
+        .nav__menu__btn {
+          font-size: 1.2rem;
+        }
+
+        .header__container {
+          padding-block: 2rem 1rem;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.2rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        nav {
+          position: relative;
+          padding: 2rem 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+        }
+
+        .nav__header {
+          padding: 0;
+        }
+
+        .nav__logo span {
+          display: flex;
+        }
+
+        .nav__menu__btn {
+          display: none;
+        }
+
+        .nav__links {
+          position: static;
+          padding: 0;
+          flex-direction: row;
+          justify-content: flex-end;
+          gap: 3rem;
+          background-color: transparent;
+          transform: none;
+        }
+
+        .header__container {
+          grid-template-columns: repeat(2, 1fr);
+          align-items: center;
+        }
+
+        .socials {
+          justify-content: flex-start;
+        }
+      }
       </style>
   </head>
   <body>

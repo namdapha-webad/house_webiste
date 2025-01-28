@@ -262,6 +262,45 @@
           opacity: 1;
         }
       }
+       /* Responsive Styles */
+      @media (max-width: 1024px) {
+        .left, .center, .right, .lefter, .righter {
+          width: 220px;
+          height: 180px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .all {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .left, .center, .right, .lefter, .righter {
+          width: 200px;
+          height: 160px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .navbar {
+          padding: 0.5rem 1rem;
+        }
+
+        .left, .center, .right, .lefter, .righter {
+          width: 150px;
+          height: 130px;
+        }
+
+        .text {
+          font-size: 0.9rem;
+        }
+      }
 
     </style>
     <header>
