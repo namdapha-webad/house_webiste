@@ -6,6 +6,51 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
   <title>Document</title>
+  <style>
+    
+/* Responsive Styling */
+@media (max-width: 768px) {
+  header {
+    text-align: center;
+    padding: 15px;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+
+  .solar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .planet {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .planet_description h1 {
+    font-size: 1.2rem;
+  }
+
+  .planet_description p {
+    font-size: 0.9rem;
+  }
+
+  .social-links i {
+    font-size: 20px;
+  }
+}
+  </style>
 </head>
 <body>
     <header>
