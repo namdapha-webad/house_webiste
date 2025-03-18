@@ -21,6 +21,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         .navbar {
             position: fixed;
             top: 2rem;
@@ -99,21 +100,21 @@
             background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .modal.active {
             display: flex;
-            opacity: 1;
         }
 
+        /* Enable scrolling inside modal content */
         .modal-content {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
             max-width: 800px;
             width: 90%;
+            max-height: 80vh; /* Limit height of modal */
+            overflow-y: auto; /* Enable scrolling */
             text-align: left;
             animation: slide-in 0.3s ease;
         }
@@ -140,7 +141,6 @@
                 transform: translateY(-50px);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -178,9 +178,12 @@
         a.event-link:hover {
             text-decoration: underline;
         }
-    </style>
 
-    
+        /* Prevent body scrolling when modal is open */
+        body.modal-open {
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -200,7 +203,6 @@
 
     <!-- Club Grid Section -->
     <div class="club-grid">
-        <!-- Example Club Item (Add as many as needed) -->
         <div class="club-item" data-club="club1">
             <img src="{{ url_for('static', filename='images/sahyog.jpg') }}" alt="Club 1 Logo" class="club-logo">
         </div>
@@ -211,10 +213,10 @@
             <img src="{{ url_for('static', filename='images/stemoneff.png') }}" alt="Club 3 Logo" class="club-logo">
         </div>
         <div class="club-item" data-club="Namdapha">
-            <img src="{{ url_for('static', filename='images/paradox_logo.png') }}" alt="Club 3 Logo" class="club-logo">
+            <img src="{{ url_for('static', filename='images/paradox_logo.png') }}" alt="Club Namdapha Logo" class="club-logo">
         </div>
         <div class="club-item" data-club="Namdapha_only">
-            <img src="{{ url_for('static', filename='images/namdapha_logo_event.jpg') }}" alt="Club 3 Logo" class="club-logo">
+            <img src="{{ url_for('static', filename='images/namdapha_logo_event.jpg') }}" alt="Club Namdapha Only Logo" class="club-logo">
         </div>
     </div>
 
@@ -241,127 +243,167 @@
     </div>
 
     <script>
-        // Event Details for each club (You can add more clubs and details here)
-        const clubEventDetails = {
-            club1: {
-                name: "Sahyog",
-                events: [
+        document.addEventListener("DOMContentLoaded", function() {
+            const clubEventDetails = {
+                club1: {
+                    name: "Sahyog",
+                    events: [
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.37.24 PM.png') }}",
+                            link: "https://www.youtube.com/@Namdapha_IITM",
+                            description: "Sahyog Orientation."
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.37.33 PM.png') }}",
+                            link: "https://www.youtube.com/@Namdapha_IITM",
+                            description: "World in Motion: A geoploitical Workshop of 3 Days."
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.37.41 PM.png') }}",
+                            link: "https://www.youtube.com/@Namdapha_IITM",
+                            description: "World Mental health Day."
+                        },
+                        
+                    ]
+                },
+                club2: {
+                    name: "Fearless Orators",
+                    events: [
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.36.34 PM.png') }}",
+                            link: "https://www.youtube.com/@Namdapha_IITM",
+                            description: "Snapshot to Stories: Capture the Moments, Craft the Narrative."
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.37.09 PM.png') }}",
+                            link: "https://www.youtube.com/@Namdapha_IITM",
+                            description: "Speaker Session with Assistant Labour Commissioner."
+                        }
+                    ]
+                },
+                club3: {
+                    name: "STEMONEFF COMMUNITY",
+                    events: [
                     {
-                        poster: "{{ url_for('static', filename='images/event1.jpg') }}",
-                        link: "https://example.com/event1",
-                        description: "Club 1 hosted an event on June 15th, 2023, where participants explored photography."
+                        poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.38.22 PM.png') }}",
+                        link: "https://www.youtube.com/@Namdapha_IITM",
+                        description: "STEMONEFF COMMUNITY CLUB Orientation."
                     },
-                    {
-                        poster: "{{ url_for('static', filename='images/event2.jpg') }}",
-                        link: "https://example.com/event2",
-                        description: "Club 1 organized a workshop on digital art techniques on July 22nd, 2023."
-                    }
-                ]
-            },
-            club2: {
-                name: "Fearless Orators",
-                events: [
-                    {
-                        poster: "{{ url_for('static', filename='images/event3.jpg') }}",
-                        link: "https://example.com/event3",
-                        description: "Club 2 organized a music concert on August 10th, 2023, featuring live performances."
-                    }
-                ]
-            },
-            club3: {
-                name: "STEMONEFF COMMUNITY",
-                events: [
-                    {
-                        poster: "{{ url_for('static', filename='images/event4.jpg') }}",
-                        link: "https://example.com/event4",
-                        description: "Club 3 held a coding hackathon on November 20th, 2023."
-                    }
-                ]
-            },
-            Namdapha: {
-                name: "Namdapha X Paradox",
-                events: [
-                    {
-                        poster: "{{ url_for('static', filename='images/event4.jpg') }}",
-                        link: "https://example.com/event4",
-                        description: "Club 3 held a coding hackathon on November 20th, 2023."
-                    }
-                ]
-            },
-            Namdapha_only: {
-                name: "Namdapha",
-                events: [
-                    {
-                        poster: "{{ url_for('static', filename='images/battleultimate.jpg') }}",
-                        link: "https://example.com/event4",
-                        description: "organized Sandhya Darshan."
-                    }
-                ]
-            },
+                    ]
+                },
+                Namdapha: {
+                    name: "Namdapha X Paradox",
+                    events: [
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.35.07 PM.png') }}",
+                            link: "No link available, organized in Paradox",
+                            description: "Hacksprint: a Web dev hackathon"
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.35.28 PM.png') }}",
+                            link: "No link available, organized in Paradox",
+                            description: "A Multi Talent Oriented event to show case your hidden talents."
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.35.44 PM.png') }}",
+                            link: "No link available, organized in Paradox",
+                            description: "A AI based song generating challenge."
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.36.00 PM.png') }}",
+                            link: "No link available, organized in Paradox",
+                            description: "Reel making Competition in paradox."
+                        },
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.36.18 PM.png') }}",
+                            link: "No link available, organized in Paradox",
+                            description: "Skribbl challenge."
+                        },
+                        
+                    ]
+                        
+                },
+                Namdapha_only: {
+                    name: "Namdapha",
+                    events: [
+                        {
+                            poster: "{{ url_for('static', filename='Events_poster/Screenshot 2025-03-09 at 6.36.50 PM.png') }}",
+                            link: "https://www.youtube.com/@Namdapha_IITM",
+                            description: "House Orientation."
+                        },
+                    ]
+                }
+            };
 
-        };
+            const clubItems = document.querySelectorAll('.club-item');
+            const modal = document.getElementById('club-modal');
+            const clubNameElem = document.getElementById('club-name');
+            const eventRowsElem = document.getElementById('event-rows');
+            const closeButton = document.querySelector('.close-btn'); 
 
-        // Handle Click on Club Logo
-        const clubItems = document.querySelectorAll('.club-item');
-        const modal = document.getElementById('club-modal');
-        const clubNameElem = document.getElementById('club-name');
-        const eventRowsElem = document.getElementById('event-rows');
+            clubItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const clubKey = this.getAttribute('data-club');
+                    const clubInfo = clubEventDetails[clubKey];
 
-        clubItems.forEach(item => {
-            item.addEventListener('click', function () {
-                const clubKey = this.getAttribute('data-club');
-                const clubInfo = clubEventDetails[clubKey];
+                    clubNameElem.textContent = clubInfo.name;
+                    eventRowsElem.innerHTML = ''; 
 
-                // Set Club Name
-                clubNameElem.textContent = clubInfo.name;
+                    clubInfo.events.forEach(event => {
+                        const row = document.createElement('tr');
 
-                // Clear previous event rows
-                eventRowsElem.innerHTML = '';
+                        const posterCell = document.createElement('td');
+                        const posterImg = document.createElement('img');
+                        posterImg.src = event.poster;
+                        posterImg.classList.add('poster');
+                        posterCell.appendChild(posterImg);
 
-                // Populate event rows dynamically
-                clubInfo.events.forEach(event => {
-                    const row = document.createElement('tr');
+                        const linkCell = document.createElement('td');
+                        if (event.link.startsWith('http')) {
+                            const linkAnchor = document.createElement('a');
+                            linkAnchor.href = event.link;
+                            linkAnchor.textContent = "Event Link";
+                            linkAnchor.classList.add('event-link');
+                            linkCell.appendChild(linkAnchor);
+                        } else {
+                            linkCell.textContent = event.link;
+                        }
 
-                    const posterCell = document.createElement('td');
-                    const posterImg = document.createElement('img');
-                    posterImg.src = event.poster;
-                    posterImg.classList.add('poster');
-                    posterCell.appendChild(posterImg);
+                        const descriptionCell = document.createElement('td');
+                        descriptionCell.textContent = event.description;
 
-                    const linkCell = document.createElement('td');
-                    const linkAnchor = document.createElement('a');
-                    linkAnchor.href = event.link;
-                    linkAnchor.textContent = "Event Link";
-                    linkAnchor.classList.add('event-link');
-                    linkCell.appendChild(linkAnchor);
+                        row.appendChild(posterCell);
+                        row.appendChild(linkCell);
+                        row.appendChild(descriptionCell);
 
-                    const descriptionCell = document.createElement('td');
-                    descriptionCell.textContent = event.description;
+                        eventRowsElem.appendChild(row);
+                    });
 
-                    row.appendChild(posterCell);
-                    row.appendChild(linkCell);
-                    row.appendChild(descriptionCell);
-
-                    eventRowsElem.appendChild(row);
+                    modal.classList.add('active');
+                    document.body.classList.add('modal-open'); // Prevent body scroll
                 });
-
-                // Show the modal
-                modal.classList.add('active');
             });
-        });
 
-        // Close Modal Function
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-
-        // Close modal if clicking outside the content box
-        window.onclick = function (event) {
-            if (event.target === modal) {
+            closeButton.addEventListener('click', function() {
                 closeModal();
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open'); // Restore body scroll
             }
-        }
+
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            }
+        });
     </script>
 </body>
 
 </html>
+
+
+
+

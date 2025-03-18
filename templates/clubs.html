@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clubs</title>
-     <style>
+    <style>
         /* Basic styles */
         body {
             background-color: #000000;
@@ -50,7 +50,7 @@
         .container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* This will ensure that the images wrap into multiple rows on smaller screens */
             padding: 20px;
             margin-top: 100px;
             width: 100%;
@@ -233,8 +233,9 @@
             }
         }
     </style>
+</head>
+<body>
     <header>
-    
         <nav class="navbar">
             <a href="/">Namdapha House</a>
             <a href="/HC">House Council</a>
@@ -245,22 +246,27 @@
             <a href="announcement">Announcements</a>
         </nav>
     </header>
-</head>
-<body>
+
     <div class="container">
-        <div class="image-gallery">
-            <div class="image-box" onclick="openModal('Sahyog Foundation')">
-                <img src="{{ url_for('static', filename='images/sahyog.jpg') }}" alt="Sahyog Foundation">
-                <div class="popup">Sahyog Foundation Club</div>
-            </div>
-            <div class="image-box" onclick="openModal('Fearless Orators')">
-                <img src="{{ url_for('static', filename='images/final.png') }}" alt="The Fearless Orators">
-                <div class="popup">The Fearless Orators Club</div>
-            </div>
-            <div class="image-box" onclick="openModal('Stemonef Community')">
-                <img src="{{ url_for('static', filename='images/stemoneff.png') }}" alt="Stemonef Community">
-                <div class="popup"><strong>STEMONEF COMMUNITY CLUB</strong></div>
-            </div>
+        <div class="image-box" onclick="openModal('Sahyog Foundation')">
+            <img src="{{ url_for('static', filename='images/sahyog.jpg') }}" alt="Sahyog Foundation">
+            <div class="popup">Sahyog Foundation Club</div>
+        </div>
+        <div class="image-box" onclick="openModal('Fearless Orators')">
+            <img src="{{ url_for('static', filename='images/final.png') }}" alt="The Fearless Orators">
+            <div class="popup">The Fearless Orators Club</div>
+        </div>
+        <div class="image-box" onclick="openModal('Stemonef Community')">
+            <img src="{{ url_for('static', filename='images/stemoneff.png') }}" alt="Stemonef Community">
+            <div class="popup"><strong>STEMONEF COMMUNITY CLUB</strong></div>
+        </div>
+        <div class="image-box" onclick="openModal('Kavya')">
+            <img src="{{ url_for('static', filename='images/kavya_logo.png') }}" alt="Kavya">
+            <div class="popup"><strong>Kavya</strong></div>
+        </div>
+        <div class="image-box" onclick="openModal('Tesseract')">
+            <img src="{{ url_for('static', filename='images/tesseract.jpg') }}" alt="Tesseract">
+            <div class="popup"><strong>Tesseract</strong></div>
         </div>
     </div>
 
@@ -292,122 +298,133 @@
                 <p id="founderEmail">founder@example.com</p>
             </div>
             <div class="profile" id="superCoordinatorSection" style="display: none;">
-        <img id="superCoordPhoto" src="https://via.placeholder.com/100" alt="Super Coordinator">
-        <p id="superCoordName">Super Coordinator Name</p>
-        <p id="superCoordEmail">supercoord@example.com</p>
-    </div>
+                <img id="superCoordPhoto" src="https://via.placeholder.com/100" alt="Super Coordinator">
+                <p id="superCoordName">Super Coordinator Name</p>
+                <p id="superCoordEmail">supercoord@example.com</p>
+            </div>
         </div>
+
         <div class="event-links">
             <a href="#" id="membershiplink" target="_blank">Membership Form</a>
-            
         </div>
         <div class="social-links">
-    <a href="#" id="instagramLink" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 20px; height: 20px;"> 
-    </a>
-    <a href="#" id="linkedinLink" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 20px; height: 20px;"> 
-    </a>
-</div>
+            <a href="#" id="instagramLink" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width: 20px; height: 20px;"> 
+            </a>
+            <a href="#" id="linkedinLink" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 20px; height: 20px;"> 
+            </a>
+        </div>
 
         <div class="event-links">
             <a href="/pastevent" id="event1Link" target="_blank">Event 1</a>
-            <!--a href="#" id="event2Link" target="_blank">Event 2</a-->
         </div>
-
     </div>
 
     <script>
         function openModal(clubName) {
-    const modal = document.getElementById('clubModal');
-    const title = document.getElementById('clubTitle');
-    const description = document.getElementById('clubDescription');
-    const instagramLink = document.getElementById('instagramLink');
-    const linkedinLink = document.getElementById('linkedinLink');
-    const membershipLink = document.getElementById('membershiplink');
-    const founderPhoto = document.getElementById('founderPhoto');
-    const founderName = document.getElementById('founderName');
-    const founderEmail = document.getElementById('founderEmail');
-    const superCoordSection = document.getElementById('superCoordinatorSection');
-    const superCoordPhoto = document.getElementById('superCoordPhoto');
-    const superCoordName = document.getElementById('superCoordName');
-    const superCoordEmail = document.getElementById('superCoordEmail');
-    const foundersection = document.getElementById('foundersection');
-    const secretary = document.getElementById('secretaryName');
-    const secretary_email = document.getElementById('secretaryEmail');
-    const sec_photo = document.getElementById('secretaryPhoto');
-    const depsec = document.getElementById('deputySecName');
-    const depsec_photo = document.getElementById('deputySecPhoto');
-    const depsec_mail = document.getElementById('deputySecEmail');
-    const depsecsection = document.getElementById('depsecsection');
-    title.textContent = clubName;
+            const modal = document.getElementById('clubModal');
+            const title = document.getElementById('clubTitle');
+            const description = document.getElementById('clubDescription');
+            const instagramLink = document.getElementById('instagramLink');
+            const linkedinLink = document.getElementById('linkedinLink');
+            const membershipLink = document.getElementById('membershiplink');
+            const founderPhoto = document.getElementById('founderPhoto');
+            const founderName = document.getElementById('founderName');
+            const founderEmail = document.getElementById('founderEmail');
+            const superCoordSection = document.getElementById('superCoordinatorSection');
+            const superCoordPhoto = document.getElementById('superCoordPhoto');
+            const superCoordName = document.getElementById('superCoordName');
+            const superCoordEmail = document.getElementById('superCoordEmail');
+            const foundersection = document.getElementById('foundersection');
+            const secretary = document.getElementById('secretaryName');
+            const secretary_email = document.getElementById('secretaryEmail');
+            const sec_photo = document.getElementById('secretaryPhoto');
+            const depsec = document.getElementById('deputySecName');
+            const depsec_photo = document.getElementById('deputySecPhoto');
+            const depsec_mail = document.getElementById('deputySecEmail');
+            const depsecsection = document.getElementById('depsecsection');
+            title.textContent = clubName;
 
-    switch (clubName) {
-        case 'Sahyog Foundation':
-            description.textContent = 'Sahyog Foundation Description...';
-            instagramLink.href = 'https://instagram.com/sahyog';
-            linkedinLink.href = 'https://linkedin.com/in/sahyog';
-            membershipLink.href = 'https://forms.gle/g3aPz4DisLQGfC2d7';
-            foundersection.style.display = 'block';
-            founderPhoto.src = 'static/images/WhatsApp Image 2024-12-24 at 09.19.32_233681f5 - 24F1100132 HARI OM.jpg';
-            founderName.textContent = 'Hari Om (Founder)';
-            founderEmail.textContent = '24f1100132@es.study.iitm.ac.in';
-            superCoordSection.style.display = 'none'; // Hide Super Coordinator section
-            secretary.textContent='Priyansh Dwivedi (Secretary)';
-            depsec.textContent='DEEKSHA SONI (Deputy Secretary)';
-            depsec_photo.src='static/images/Image - 24F2100354 DEEKSHA SONI.jpg';
-            depsec_mail.textContent='24f2100354@es.study.iitm.ac.in';
-            depsecsection.style.display='block';
-            sec_photo.src='static/images/Priyansh2l (1) - Sahyog.jpg';
-            secretary_email.textContent='23f3000469@es.study.iitm.ac.in';
-            break;
+            switch (clubName) {
+                case 'Sahyog Foundation':
+                    description.textContent = 'Sahyog Foundation Description...';
+                    instagramLink.href = 'https://instagram.com/sahyog';
+                    linkedinLink.href = 'https://linkedin.com/in/sahyog';
+                    membershipLink.href = 'https://forms.gle/g3aPz4DisLQGfC2d7';
+                    foundersection.style.display = 'block';
+                    founderPhoto.src = 'static/images/WhatsApp Image 2024-12-24 at 09.19.32_233681f5 - 24F1100132 HARI OM.jpg';
+                    founderName.textContent = 'Hari Om (Founder)';
+                    founderEmail.textContent = '24f1100132@es.study.iitm.ac.in';
+                    superCoordSection.style.display = 'none'; // Hide Super Coordinator section
+                    secretary.textContent='Priyansh Dwivedi (Secretary)';
+                    depsec.textContent='DEEKSHA SONI (Deputy Secretary)';
+                    depsec_photo.src='static/images/Image - 24F2100354 DEEKSHA SONI.jpg';
+                    depsec_mail.textContent='24f2100354@es.study.iitm.ac.in';
+                    depsecsection.style.display='block';
+                    sec_photo.src='static/images/Priyansh2l (1) - Sahyog.jpg';
+                    secretary_email.textContent='23f3000469@es.study.iitm.ac.in';
+                    break;
 
-        case 'Fearless Orators':
-            description.textContent = 'The Fearless Orators Description...';
-            instagramLink.href = 'https://instagram.com/fearlessorators';
-            linkedinLink.href = 'https://linkedin.com/in/fearlessorators';
-            membershipLink.href = 'https://forms.gle/Ychx3HRo4QUxw6Qz8';
-            secretary_email.textContent='24f3003520@ds.study.iitm.ac.in';
-            sec_photo.src='static/images/Lakshay2.png';
-            foundersection.style.display='none';
-            secretary.textContent='Lakshyaraj singh rathore (Founder & secretary)';
-            superCoordSection.style.display = 'block'; // Show Super Coordinator section
-            superCoordPhoto.src = 'static/images/Coordinator.jpg'; // Add Super Coordinator image
-            superCoordName.textContent = 'Ananya Raikwar (Super Coordinator)'; // Add Super Coordinator name
-            superCoordEmail.textContent = '24f3001402@ds.study.iitm.ac.in'; // Add Super Coordinator email
-            depsec.textContent='Prashant Tiwari (Deputy Secretary)';
-            depsec_photo.src='static/images/photo1.jpg';
-            depsec_mail.textContent='24f2001089@ds.study.iitm.ac.in';
-            depsecsection.style.display='block';
-            break;
+                case 'Fearless Orators':
+                    description.textContent = 'The Fearless Orators Description...';
+                    instagramLink.href = 'https://instagram.com/fearlessorators';
+                    linkedinLink.href = 'https://linkedin.com/in/fearlessorators';
+                    membershipLink.href = 'https://forms.gle/Ychx3HRo4QUxw6Qz8';
+                    sec_photo.src='static/images/lakshay.jpg';
+                    foundersection.style.display='none';
+                    secretary.textContent='Lakshyaraj Singh Rathore (Founder & Secretary)';
+                    superCoordSection.style.display = 'block'; // Show Super Coordinator section
+                    superCoordPhoto.src = 'static/images/Coordinator.jpg'; // Add Super Coordinator image
+                    superCoordName.textContent = 'Ananya Raikwar (Super Coordinator)'; // Add Super Coordinator name
+                    superCoordEmail.textContent = '24f3001402@ds.study.iitm.ac.in'; // Add Super Coordinator email
+                    depsec.textContent='Prashant Tiwari (Deputy Secretary)';
+                    depsec_photo.src='static/images/prashant.jpg';
+                    depsec_mail.textContent='24f2001089@ds.study.iitm.ac.in';
+                    depsecsection.style.display='block';
+                    break;
 
-        case 'Stemonef Community':
-            description.textContent = 'Stemonef Community Description...';
-            instagramLink.href = 'https://instagram.com/stemonef';
-            linkedinLink.href = 'https://www.linkedin.com/groups/8150922/';
-            membershipLink.href = 'https://forms.gle/8EeZczVuJJgSZ9sT6';
-            foundersection.style.display='none';
-            secretary.textContent='Vikas (Founder)';
-            sec_photo.src='static/images/vikas.png';
-            secretary_email.textContent='23f3000217@es.study.iitm.ac.in'
-            superCoordSection.style.display = 'none'; // Hide Super Coordinator section
-            depsec.textContent='Vansh Mangal (Secretary)';
-            depsec_photo.src='static/images/vansh.jpg';
-            depsec_mail.textContent='24f3000756@ds.study.iitm.ac.in';
-            depsecsection.style.display='block';
-            break;
+                case 'Stemonef Community':
+                    description.textContent = 'Stemonef Community Description...';
+                    instagramLink.href = 'https://instagram.com/stemonef';
+                    linkedinLink.href = 'https://www.linkedin.com/groups/8150922/';
+                    membershipLink.href = 'https://forms.gle/8EeZczVuJJgSZ9sT6';
+                    foundersection.style.display='none';
+                    sec_photo.src='static/images/vikas.png';
+                    secretary.textContent='Vikas (Founder)';
+                    secretary_email.textContent='23f3000217@es.study.iitm.ac.in';
+                    superCoordSection.style.display = 'none'; // Hide Super Coordinator section
+                    depsec.textContent='Vansh Mangal (Secretary)';
+                    depsec_photo.src='static/images/vansh.jpg';
+                    depsec_mail.textContent='24f3000756@ds.study.iitm.ac.in';
+                    depsecsection.style.display='block';
+                    break;
 
-        default:
-            description.textContent = '';
-            instagramLink.href = '#';
-            linkedinLink.href = '#';
-            membershipLink.href = '#';
-            superCoordSection.style.display = 'none'; // Hide Super Coordinator section
-    }
+                case 'Kavya':
+                    description.textContent = 'The Kavya Description.....';
+                    instagramLink.href = 'https://instagram.com/kavya_iitm';
+                    linkedinLink.href = 'https://linkedin.com';
+                    membershipLink.href = 'https://forms.gle/WG281Ahs7UzM7Nyf8';
+                    sec_photo.src='static/images/shivang.jpg';
+                    foundersection.style.display='none';
+                    secretary.textContent='Shivang Saraswat (Founder)';
+                    superCoordSection.style.display = 'none'; 
+                    depsec.textContent='Mahina Mallick (Secretary)';
+                    depsec_photo.src='static/images/mahima.jpg';
+                    depsec_mail.textContent='24f2001089@ds.study.iitm.ac.in';
+                    depsecsection.style.display='block';
+                    break;
 
-    modal.classList.add('active');
-}
+                default:
+                    description.textContent = '';
+                    instagramLink.href = '#';
+                    linkedinLink.href = '#';
+                    membershipLink.href = '#';
+                    superCoordSection.style.display = 'none'; // Hide Super Coordinator section
+            }
 
+            modal.classList.add('active');
+        }
 
         function closeModal() {
             const modal = document.getElementById('clubModal');
