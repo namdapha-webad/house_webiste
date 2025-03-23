@@ -278,7 +278,7 @@
 
         <div class="club-details">
             <!-- Secretary Details -->
-            <div class="profile">
+            <div class="profile" id="secsection" style="display: none;">
                 <img id="secretaryPhoto" src="https://via.placeholder.com/100" alt="Secretary">
                 <p id="secretaryName">Secretary Name</p>
                 <p id="secretaryEmail">secretary@example.com</p>
@@ -413,6 +413,23 @@
                     depsec_photo.src='static/images/mahima.jpg';
                     depsec_mail.textContent='24f2001089@ds.study.iitm.ac.in';
                     depsecsection.style.display='block';
+                    secretary_email.textContent="24f3001856@ds.study.iitm.ac.in";
+                    break;
+
+                case 'Tesseract':
+                    description.textContent = 'The Tesseract Description.....';
+                    instagramLink.href = 'https://www.instagram.com/tesseract_iitm';
+                    linkedinLink.href = 'https://linkedin.com';
+                    membershipLink.href = 'https://tinyurl.com/jointesseract';
+                    sec_photo.src='static/images/TESSERACT LOGO-modified.png';
+                    foundersection.style.display='none';
+                    secretary.textContent='aryan  (Founder)';
+                    secretary_email.textContent='24f3000984@ds.study.iitm.ac.in';
+                    superCoordSection.style.display = 'none'; 
+                    depsec.textContent='Mahina Mallick (Secretary)';
+                    depsec_photo.src='static/images/mahima.jpg';
+                    depsec_mail.textContent='24f3000984@ds.study.iitm.ac.in';
+                    depsecsection.style.display='none';
                     break;
 
                 default:
